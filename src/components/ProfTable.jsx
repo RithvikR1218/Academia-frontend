@@ -2,17 +2,22 @@ import { useEffect, useState } from 'react';
 import { Table, Loader } from '@mantine/core';
 import { getProfessors } from '../api/proff_search';
 
-export default function ProfTable({ collegeId, departmentId }) {
+export default function ProfTable({ collegeId, departmentId, researchInterests }) {
   const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('👀 Props received:', { collegeId, departmentId, researchInterests });
+    // rest of code...
+  }, [collegeId, departmentId, researchInterests]);  
+
+  useEffect(() => {
     setLoading(true);
-    getProfessors({ collegeId, departmentId })
+    getProfessors({ collegeId, departmentId, researchInterests })
       .then(setProfessors)
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, [collegeId, departmentId]);
+  }, [collegeId, departmentId, researchInterests]);
 
   if (loading) return <Loader />;
 

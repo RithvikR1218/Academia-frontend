@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@mantine/core';
+import { Button, TextInput } from '@mantine/core';
 import College from '../components/College';
 import Department from '../components/Department';
 import ProfTable from '../components/ProfTable';
@@ -7,13 +7,19 @@ import ProfTable from '../components/ProfTable';
 export default function Search() {
   const [selectedInstitute, setSelectedInstitute] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [researchInterest, setResearchInterest] = useState('');
   const [showTable, setShowTable] = useState(false);
-  const [filters, setFilters] = useState({ collegeId: null, departmentId: null });
+  const [filters, setFilters] = useState({
+    collegeId: null,
+    departmentId: null,
+    researchInterests: '',
+  });
 
   const handleSearch = () => {
     setFilters({
       collegeId: selectedInstitute?.value || null,
       departmentId: selectedDepartment?.value || null,
+      researchInterests: researchInterest.trim(),
     });
     setShowTable(true);
   };
@@ -33,6 +39,14 @@ export default function Search() {
         onChange={(option) => setSelectedDepartment(option)}
       />
 
+      <TextInput
+        label="Research Interest"
+        placeholder="e.g. cybersecurity"
+        value={researchInterest}
+        onChange={(e) => setResearchInterest(e.currentTarget.value)}
+        mt="md"
+      />
+
       <Button onClick={handleSearch} mt="md">
         Search Professors
       </Button>
@@ -41,6 +55,7 @@ export default function Search() {
         <ProfTable
           collegeId={filters.collegeId}
           departmentId={filters.departmentId}
+          researchInterests={filters.researchInterests}
         />
       )}
     </div>

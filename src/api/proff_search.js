@@ -17,10 +17,14 @@ export async function getCollegeDepartments(id) {
   return res.data;
 }
 
-export async function getProfessors({ collegeId, departmentId } = {}) {
+export async function getProfessors({ collegeId, departmentId, researchInterests } = {}) {
   const params = {};
+
   if (collegeId) params.collegeId = collegeId;
   if (departmentId) params.departmentId = departmentId;
+  if (researchInterests && researchInterests.trim()) {
+    params.q = researchInterests.trim();
+  }
 
   const res = await axios.get(`${baseURL}/api/professors`, { params });
   return res.data;
