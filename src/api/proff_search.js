@@ -17,14 +17,14 @@ export async function getCollegeDepartments(id) {
   return res.data;
 }
 
-export async function getProfessors({ collegeId, departmentId, researchInterests } = {}) {
+export async function getProfessors({ collegeId, departmentId, researchInterests, page, per_page } = {}) {
   const params = {};
 
   if (collegeId) params.collegeId = collegeId;
   if (departmentId) params.departmentId = departmentId;
-  if (researchInterests && researchInterests.trim()) {
-    params.q = researchInterests.trim();
-  }
+  if (researchInterests && researchInterests.trim()) params.q = researchInterests.trim();
+  if (page) params.page = page;
+  if (per_page) params.per_page = per_page;
 
   const res = await axios.get(`${baseURL}/api/professors`, { params });
   return res.data;
