@@ -10,6 +10,11 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
   const perPage = 10;
 
   useEffect(() => {
+    console.log('👀 Props received:', { collegeId, departmentId, researchInterests });
+    // rest of code...
+  }, [collegeId, departmentId, researchInterests]);  
+
+  useEffect(() => {
     setLoading(true);
     getProfessors({ collegeId, departmentId, researchInterests, page, per_page: perPage })
       .then((data) => {
