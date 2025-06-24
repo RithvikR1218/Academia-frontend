@@ -1,16 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { MantineProvider } from '@mantine/core'
-import '@mantine/core/styles.css'
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css'; // <-- Make sure this is imported
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter> {/* <-- Wrap everything inside this */}
+    <BrowserRouter>
       <MantineProvider withGlobalStyles withNormalizeCSS>
+        <Notifications position="top-right" zIndex={2077} />
         <App />
       </MantineProvider>
     </BrowserRouter>
   </React.StrictMode>,
-)
+);

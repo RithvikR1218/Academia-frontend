@@ -1,9 +1,12 @@
 // App.jsx
-import { AppShell, AppShellHeader, AppShellMain, AppShellFooter, AppShellNavbar, Text } from '@mantine/core';
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { AppShell, AppShellHeader, AppShellMain, AppShellFooter, AppShellNavbar, Text, Loader } from '@mantine/core';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+const SynonymAdminPanel = lazy(() => import('./pages/SynonymAdminPanel'));
+const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 
 function App() {
   return (
@@ -20,15 +23,21 @@ function App() {
       <AppShellNavbar p="md">
         <Link to="/">Search</Link><br />
         <Link to="/login">Login</Link><br />
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link><br />
+        <Link to="/admin">Admin Panel</Link>
+        <Link to="/admin/synonyms">Synonym Admin Panel</Link>
       </AppShellNavbar>
 
       <AppShellMain>
-        <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Search />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/admin/synonyms" element={<SynonymAdminPanel />} />
+          </Routes>
+        </Suspense>
       </AppShellMain>
 
       <AppShellFooter>
