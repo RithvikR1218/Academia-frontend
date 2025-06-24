@@ -29,3 +29,18 @@ export async function getProfessors({ collegeId, departmentId, researchInterests
   const res = await axios.get(`${baseURL}/api/professors`, { params });
   return res.data;
 }
+
+export async function getProfessorById(id) {
+  const res = await axios.get(`${baseURL}/api/professors/${id}`);
+  return res.data;
+}
+
+export async function updateProfessor(id, data) {
+  const res = await axios.put(`${baseURL}/api/professors/${id}`, data);
+  return res.data;
+}
+
+export async function deleteProfessor(id) {
+  const res = await axios.delete(`${baseURL}/api/professors/${id}`);
+  return res.data;
+}
