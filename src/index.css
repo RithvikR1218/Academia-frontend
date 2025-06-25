@@ -1,68 +1,86 @@
+/* Global fonts */
+@import url('./fonts/css/satoshi.css');
+@import url('./fonts/css/cabinet-grotesk.css');
+
+/* Global colours */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --base-1: #1e1e1e;
+    --base-2: #272727;
+    --text-1: #fffcf9;
+    --text-2: #cccccc;
+    --accent-1: #7e6bfd;
+    --accent-1-dark: #5b3fd8;
+    --accent-2: #ffd896;
+    --accent-2-dark: #f1c16d;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* Root HTML and body */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
 }
 
+/* React root element */
+#root {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--base-1);
+    color: var(--text-1);
+    font-family: Satoshi-Variable, sans-serif;
+    text-align: center;
+}
+
+/* Main App container */
+.App {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Other Default Styles */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 800;
+    font-size: 6rem;
+    line-height: 6rem;
+}
+
+h2 {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+
+h3 {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-2);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    background-color: var(--accent-1);
+    color: var(--text-1);
 }
