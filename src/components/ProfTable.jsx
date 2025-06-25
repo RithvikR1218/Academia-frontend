@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
-import { getProfessors } from '../api/proff_search';
+import { getProfessors, insertBatchEntry } from '../api/proff_search';
 
-export default function ProfTable({ collegeId, departmentId, researchInterests }) {
+export default function ProfTable({ collegeId, departmentId, researchInterests, user }) {
   const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -10,7 +10,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
   const perPage = 10;
 
   useEffect(() => {
-    console.log('👀 Props received:', { collegeId, departmentId, researchInterests });
+    console.log('👀 Props received:', { collegeId, departmentId, researchInterests, user });
     // rest of code...
   }, [collegeId, departmentId, researchInterests]);  
 
@@ -76,7 +76,36 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
     console.error("❌ Failed to download full CSV:", error);
   }
 };
+  const saveInUserProfTable = async () => {
+    try{
+    const allProfessors = [];
+  let currentPage = 1;
+  let totalPages = 1; // Will update after first fetch
+  const pageSize = 50; // Fetch 50 per request to avoid overloading backend
+    while (currentPage <= totalPages) {
+      const data = await getProfessors({
+        collegeId,
+        departmentId,
+        researchInterests,
+        page: currentPage,
+        per_page: pageSize
+      });
+      const ids=data.professors.map(prof => prof._id);
+      allProfessors.push(...ids);
 
+      if (currentPage === 1) {
+        totalPages = Math.ceil(data.total / pageSize);
+      }
+
+      currentPage++;
+    }
+    await insertBatchEntry(user._id,allProfessors);
+    alert("Saved in dashboard");
+  }
+  catch(error){
+    console.error("Failed to save professors:", error);
+  }
+  };
 
   if (loading) return <Loader />;
 
@@ -96,6 +125,12 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
       {professors.length > 0 && (
         <Button onClick={downloadCSV} mb="md">
           Download Current Page as CSV
+        </Button>
+      )}
+
+      {user!=null && (
+        <Button onClick={saveInUserProfTable} mb="md">
+          Save Professors
         </Button>
       )}
 

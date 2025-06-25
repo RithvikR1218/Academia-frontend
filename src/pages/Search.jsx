@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, TextInput } from '@mantine/core';
 import College from '../components/College';
 import Department from '../components/Department';
 import ProfTable from '../components/ProfTable';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export default function Search() {
   const [selectedInstitute, setSelectedInstitute] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [researchInterest, setResearchInterest] = useState('');
   const [showTable, setShowTable] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [user, setUser] = useState(null);
   const [filters, setFilters] = useState({
     collegeId: null,
     departmentId: null,
@@ -16,6 +21,29 @@ export default function Search() {
   });
 
   const handleSearch = () => {
+    const token = localStorage.getItem('token');
+    if(token){
+    let decoded;
+      try {
+        decoded = jwtDecode(token);
+      } catch (err) {
+        console.error(`Invalid token: ${err}`);
+        localStorage.removeItem('token');
+      }
+    
+      axios
+        .get(`${baseURL}/api/auth/${decoded.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        })
+        .then(res => setUser(res.data))
+        .catch(err => {
+          console.error('Failed to fetch user:', err);
+          localStorage.removeItem('token');
+        });
+      }
     setFilters({
       collegeId: selectedInstitute?.value || null,
       departmentId: selectedDepartment?.value || null,
@@ -56,6 +84,7 @@ export default function Search() {
           collegeId={filters.collegeId}
           departmentId={filters.departmentId}
           researchInterests={filters.researchInterests}
+          user={user}
         />
       )}
     </div>

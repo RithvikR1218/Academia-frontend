@@ -44,3 +44,28 @@ export async function deleteProfessor(id) {
   const res = await axios.delete(`${baseURL}/api/professors/${id}`);
   return res.data;
 }
+
+export async function getUserProfEntries(userId){
+  const res = await axios.get(`${baseURL}/api/user-Prof/user/${userId}`);
+  return res.data;
+}
+
+export async function deleteUserProfEntry(id){
+  const res = await axios.delete(`${baseURL}/api/user-Prof/${id}`);
+  return res.data;
+}
+
+export async function updateUserProfEntry(id,data){
+  const res = await axios.put(`${baseURL}/api/user-Prof/${id}`,data);
+  return res.data;
+}
+
+export async function getAllProfessorsByIds(professorIds){
+  const res = await axios.post(`${baseURL}/api/professors/batch/`,professorIds);
+  return res.data;
+}
+
+export async function insertBatchEntry(id,data){
+  const res = await axios.post(`${baseURL}/api/user-Prof/batch/${id}`,data);
+  return res.data;
+}
