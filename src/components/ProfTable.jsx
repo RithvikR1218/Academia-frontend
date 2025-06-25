@@ -25,9 +25,34 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
       .finally(() => setLoading(false));
   }, [collegeId, departmentId, researchInterests, page]);
 
-  const downloadCSV = () => {
+  const downloadCSV = async () => {
+  const allProfessors = [];
+  let currentPage = 1;
+  let totalPages = 1; // Will update after first fetch
+  const pageSize = 50; // Fetch 50 per request to avoid overloading backend
+
+  try {
+    while (currentPage <= totalPages) {
+      const data = await getProfessors({
+        collegeId,
+        departmentId,
+        researchInterests,
+        page: currentPage,
+        per_page: pageSize
+      });
+
+      allProfessors.push(...data.professors);
+
+      if (currentPage === 1) {
+        totalPages = Math.ceil(data.total / pageSize);
+      }
+
+      currentPage++;
+    }
+
+    // Build CSV
     const headers = ['Name', 'Email', 'College', 'Department', 'Position', 'Research Interests'];
-    const rows = professors.map((prof) => [
+    const rows = allProfessors.map((prof) => [
       prof.name,
       prof.email,
       prof.collegeId?.name || 'N/A',
@@ -43,11 +68,15 @@ export default function ProfTable({ collegeId, departmentId, researchInterests }
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', 'professors_page.csv');
+    link.setAttribute('download', 'all_professors.csv');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
+  } catch (error) {
+    console.error("❌ Failed to download full CSV:", error);
+  }
+};
+
 
   if (loading) return <Loader />;
 
