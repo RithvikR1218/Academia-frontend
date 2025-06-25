@@ -43,7 +43,7 @@ export default function Navbar() {
         window.open('https://github.com/RithvikR1218/Academia-backend/', '_blank');
       }}>
         <span>Our Github</span>
-        <i className="fa-brands fa-github"></i>
+        <i class="fa-brands fa-github"></i>
       </div>
     </nav>
   );
