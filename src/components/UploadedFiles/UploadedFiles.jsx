@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { List, Text, Loader, Modal, Button } from '@mantine/core';
 import axios from 'axios';
 import { notifications } from '@mantine/notifications';
-
+import './UploadedFiles.css';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const UploadedFilesList = ({ uploadedFiles }) => {
@@ -92,27 +92,31 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     </Modal>
 
 
+    <div className='list-container'>
     <List spacing="xs" size="sm" center>
-    {uploadedFiles.map((file, index) => (
-        <List.Item key={index}>
-        <a
+      {uploadedFiles.map((file, index) => (
+        <List.Item key={index} className='list-item'>
+          <a
             href="#"
             onClick={(e) => {
-            e.preventDefault();
-            handleFileClick(file);
+              e.preventDefault();
+              handleFileClick(file);
             }}
-            style={{ color: 'blue', textDecoration: 'underline' }}
-        >
+            className="list-link"
+          >
             {file}
-        </a>
-        <Button
-        onClick={() => handleDelete(file)}
-        color="red">
-          Delete
-        </Button>
+          </a>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(file)}
+          >
+          <i className="fas fa-trash-alt"></i>&nbsp;
+            Delete
+          </button>
         </List.Item>
-    ))}
+      ))}
     </List>
+    </div>
     </>
   );
 };

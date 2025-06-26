@@ -1,5 +1,5 @@
 import './Login.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -7,6 +7,19 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleLocalLogin();
+        }
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            window.location.href = '/dashboard';
+        }
+    }, []);
 
     const handleGoogleLogin = () => {
         window.location.href = `${baseURL}/api/auth/google`; 
@@ -58,14 +71,17 @@ export default function Login() {
     };
     
     return (
-        <div className="home-container">
+        <div className="login-container">
+            <div className="gradient-blob-top"></div>
+            <div className="gradient-blob-bottom"></div>
+            <div className="gradient-blob-footer"></div>
             <div className='login-card'>
                 <h2 className="hero-h1">Login</h2>
                 <div className="login-bar">
-                    <input className="login-input" type='email' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input className="login-input" type='email' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={handleKeyDown}/>
                 </div>
                 <div className="login-bar">
-                    <input className="login-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input className="login-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={handleKeyDown}/>
                 </div>
 
                 <button className="login-button" onClick={handleLocalLogin}>

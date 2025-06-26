@@ -1,0 +1,34 @@
+.dashboard-container {
+    padding: 7rem 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.welcome-container {
+    text-align: center;
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.upload-container {
+    text-align: center;
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-button {
+    background-color: var(--base-1);
+    color: var(--text-1);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-weight: 800;
+    border-radius: 100vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

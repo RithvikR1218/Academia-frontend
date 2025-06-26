@@ -8,7 +8,7 @@ import Search from './pages/Search';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import VerifyOTP from './pages/VerifyOTP/VerifyOTP';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 const SynonymAdminPanel = lazy(() => import('./pages/SynonymAdminPanel'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 import './App.css';

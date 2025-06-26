@@ -11,7 +11,7 @@
     border: none;
     padding: 0.6rem 1.5rem;
     font-weight: 800;
-    border-radius: 100vw;
+    border-radius: 0.3vw;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -45,7 +45,7 @@
 }
 
 .signup-card {
-  background: rgba(255, 255, 255, 0);
+  background: transparent;
   border: 1px solid var(--text-1);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
