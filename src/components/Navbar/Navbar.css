@@ -1,6 +1,6 @@
 .nav-container {
     height: 64px;
-    background-color: var(--base-1);
+    background-color: transparent;
     color: var(--text-1);
     position: fixed;
     top: 0;
@@ -13,10 +13,6 @@
     z-index: 999;
 }
 
-.nav-container.home {
-    background-color: transparent;
-    backdrop-filter: blur(8px);
-}
   
 .logo-link {
     color: var(--text-1);

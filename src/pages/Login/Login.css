@@ -1,7 +1,7 @@
 .login-container {
     padding: 7rem 2rem 1rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     z-index: 0;
 }
 
@@ -16,6 +16,7 @@
     cursor: pointer;
     z-index: 1;
     transition: color 0.3s ease;
+    margin: 0.6rem auto;
 }
 
 .login-button::before {
@@ -50,7 +51,7 @@
     padding: 0.35rem 0.35rem 0.35rem 0.85rem;
     max-width: 25rem;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0.6rem auto;
     gap: 0.5rem;
 }
   
@@ -98,7 +99,7 @@
 
 .signup-prompt {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 0.6rem;
     display: flex;
     justify-content: cente;
     align-items: center;

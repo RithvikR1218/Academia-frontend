@@ -3,6 +3,7 @@
     position: relative;
     overflow: hidden;
     z-index: 0;
+    overflow: visible;
 }
 
 .otp-button {
@@ -16,6 +17,7 @@
     cursor: pointer;
     z-index: 1;
     transition: color 0.3s ease;
+    margin: 0.6rem auto;
 }
 
 .otp-button::before {
@@ -50,7 +52,7 @@
     padding: 0.35rem 0.35rem 0.35rem 0.85rem;
     max-width: 25rem;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0.6rem auto;
     gap: 0.5rem;
 }
 
