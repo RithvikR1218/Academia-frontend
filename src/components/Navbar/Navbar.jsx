@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
-    const location = useLocation();
-    const isHome = location.pathname === '/';
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token); // true if token exists
+  }, []);
 
   return (
     <nav className={`nav-container ${menuOpen ? 'open' : ''} ${isHome ? 'home' : ''}`}>
-      <Link to="/" className='logo-link' onClick={() => setIsMenuOpen(false)}>Prof DB</Link>
+      <Link to="/" className='logo-link' onClick={() => setMenuOpen(false)}>Prof DB</Link>
 
       <input type="checkbox" id="menu-toggle" className="menu-toggle" onClick={toggleMenu} />
       <label htmlFor="menu-toggle" className="hamburger">
@@ -24,11 +27,17 @@ export default function Navbar() {
       </label>
 
       <div className="nav-links">
-        <Link to="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
+        {!isAuthenticated && (
+          <>
+            <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
+            <span className="dot">•</span>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <span className="dot">•</span>
+          </>
+        )}
+        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
         <span className="dot">•</span>
-        <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>Dashboard</Link>
-        <span className="dot">•</span>
-        <Link to="/search" onClick={() => setIsMenuOpen(false)}>Search</Link>
+        <Link to="/search" onClick={() => setMenuOpen(false)}>Search</Link>
       </div>
 
       <div className="github-button" onClick={() => {
@@ -36,7 +45,7 @@ export default function Navbar() {
         window.open('https://github.com/RithvikR1218/Academia-backend/', '_blank');
       }}>
         <span>Our Github</span>
-        <i class="fa-brands fa-github"></i>
+        <i className="fa-brands fa-github"></i>
       </div>
     </nav>
   );

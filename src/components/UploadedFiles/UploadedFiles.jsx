@@ -2,7 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { List, Text, Loader, Modal, Button } from '@mantine/core';
 import axios from 'axios';
-
+import { notifications } from '@mantine/notifications';
+import './UploadedFiles.css';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const UploadedFilesList = ({ uploadedFiles }) => {
@@ -22,11 +23,14 @@ const UploadedFilesList = ({ uploadedFiles }) => {
         withCredentials: true
       });
       window.location.reload();
-      alert('File deleted successfully.');
     }
     catch (err) {
       console.error('Failed to delete:', err);
-      alert('Could not delete.');
+      notifications.show({
+        title: 'Error!',
+        message: 'File Deletion Failed',
+        color: 'red',
+      });
     } 
     finally {
       setLoading(false);
@@ -50,7 +54,11 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     }
     catch (err) {
       console.error('Failed to fetch file URL:', err);
-      alert('Could not fetch file URL.');
+      notifications.show({
+        title: 'Error!',
+        message: 'Unable to fetch file URL',
+        color: 'red',
+      });
     } 
     finally {
       setLoading(false);
@@ -84,27 +92,31 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     </Modal>
 
 
+    <div className='list-container'>
     <List spacing="xs" size="sm" center>
-    {uploadedFiles.map((file, index) => (
-        <List.Item key={index}>
-        <a
+      {uploadedFiles.map((file, index) => (
+        <List.Item key={index} className='list-item'>
+          <a
             href="#"
             onClick={(e) => {
-            e.preventDefault();
-            handleFileClick(file);
+              e.preventDefault();
+              handleFileClick(file);
             }}
-            style={{ color: 'blue', textDecoration: 'underline' }}
-        >
+            className="list-link"
+          >
             {file}
-        </a>
-        <Button
-        onClick={() => handleDelete(file)}
-        color="red">
-          Delete
-        </Button>
+          </a>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(file)}
+          >
+          <i className="fas fa-trash-alt"></i>&nbsp;
+            Delete
+          </button>
         </List.Item>
-    ))}
+      ))}
     </List>
+    </div>
     </>
   );
 };

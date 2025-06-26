@@ -1,0 +1,38 @@
+.delete-button {
+  background-color: transparent;       
+  color: #FF6961;                   
+  border: 2px solid #FF6961;             
+  padding: 0.6rem 1.5rem;
+  font-weight: 800;
+  border-radius: 0.3vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--base-2);
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.list-link {
+  font-weight: 600;
+  color: var(--text-1);
+  text-decoration: none;
+  flex-grow: 1;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.6rem 1.5rem 0.6rem 0;  
+}
+
+.list-container {
+    width:100%;
+    margin: 0 auto;
+    padding: 3rem 0;
+}

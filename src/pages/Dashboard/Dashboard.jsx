@@ -3,9 +3,10 @@ import { Button } from '@mantine/core';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { FileInput } from '@mantine/core';
-import UploadedFilesList from '../components/UploadedFiles';
-import UserProfTable from '../components/UserProfTable';
-
+import UploadedFilesList from '../../components/UploadedFiles/UploadedFiles';
+import UserProfTable from '../../components/UserProfTable';
+import { notifications } from '@mantine/notifications';
+import './Dashboard.css';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function Dashboard() {
@@ -15,13 +16,12 @@ function Dashboard() {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    // Step 1: Check if token is in query params (from Google callback redirect)
+    localStorage.removeItem('email'); 
     const urlParams = new URLSearchParams(window.location.search);
     const tokenFromUrl = urlParams.get('token');
   
     if (tokenFromUrl) {
       localStorage.setItem('token', tokenFromUrl);
-      // Clean up URL
       window.history.replaceState({}, document.title, '/dashboard');
     }
   
@@ -73,7 +73,11 @@ function Dashboard() {
 
   const handleUpload = async () => {
     if(!file){
-      alert("Please select a file to upload.");
+      notifications.show({
+        title: 'Error!',
+        message: 'Please select a file to upload.',
+        color: 'red',
+      });
       return;
     }
 
@@ -100,10 +104,18 @@ function Dashboard() {
       }
 
       console.log('File uploaded successfully:', data.url);
-      alert('Upload success!');
+      notifications.show({
+        title: 'Success!',
+        message: 'File Uploaded Successfully',
+        color: 'green',
+      });
     } catch (error) {
       console.error('Upload failed:', error);
-      alert('Error uploading file.');
+      notifications.show({
+        title: 'Error!',
+        message: 'File Upload Failed',
+        color: 'red',
+      });
     }
     finally {
       setUploading(false);
@@ -116,27 +128,35 @@ function Dashboard() {
   if (!user) return <div>Loading or not authenticated...</div>;
 
   return (
-    <div>
-      <h2>Welcome, {user.displayName}</h2>
-      <Button onClick={handleLogout} color="red">
-        Logout
-      </Button>
-
-      <FileInput 
-        accept="application/pdf" 
-        label="Upload files" 
-        placeholder="Upload files" 
-        value={file}
-        onChange={setFile} 
-      />
-      <Button 
-        onClick={handleUpload} 
-        color="blue" 
-        disabled={uploading || !file}
-        loading={uploading}
-      >
-        Upload
-      </Button>
+    <div className='dashboard-container'>
+      <div className="gradient-blob-top"></div>
+      <div className="gradient-blob-bottom"></div>
+      <div className="gradient-blob-footer"></div>
+      <div className='welcome-container'>
+        <h2>Welcome, {user.displayName}</h2>
+        <button onClick={handleLogout} className='logout-button' >
+          <i class="fas fa-sign-out"></i>&nbsp;
+          Logout
+        </button>
+      </div>
+      <div className='upload-container'>
+        <FileInput 
+          accept="application/pdf" 
+          placeholder="Add File" 
+          value={file}
+          onChange={setFile} 
+        />
+        <Button 
+          onClick={handleUpload} 
+          color="blue" 
+          disabled={uploading || !file}
+          loading={uploading}
+        >
+          Upload
+        </Button>
+      </div>
+      
+      
       <h2>Uploaded Files</h2>
       <UploadedFilesList uploadedFiles={user.uploadedFiles} />
       <h2>My Professors</h2>
