@@ -1,0 +1,132 @@
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    gap: 2rem;
+    background: linear-gradient(0deg, var(--base-2), var(--base-1));
+}
+
+
+/* ================
+     TECHSTACK
+================ */
+
+.techstack-container {
+    flex: 1 1 65%;
+    text-align: left;
+}
+  
+.techstack-p {
+    text-transform: uppercase;
+    word-spacing: 0.15rem;
+    margin: 0 0 1.5rem;
+}
+  
+.techstack-top,
+.techstack-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.techstack-bottom {
+    margin-top: 1.5rem;
+}
+  
+.techstack-item {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+  
+.techstack-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+  
+.techstack-h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+  
+
+/* ====================
+     CONTRIBUTORS
+==================== */
+
+.contributors-container {
+    flex: 1 1 30%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+  
+.contributors-p {
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+    word-spacing: 0.15rem;
+}
+  
+.contributors-div {
+    margin: 0.75rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    justify-items: start;
+}
+  
+.contributors-h3 {
+    margin: 0;
+}
+  
+
+/* =====================
+     RESPONSIVENESS
+===================== */
+
+@media (max-width: 1024px) {
+    .techstack-item {
+        width: calc(25% - 0.8rem); /* 4 per row */
+    }
+}
+  
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .techstack-container,
+    .contributors-container {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .techstack-top,
+    .techstack-bottom {
+        justify-content: center;
+    }
+    
+    .techstack-item {
+        width: calc(33.33% - 0.8rem); /* 3 per row */
+    }
+
+    .contributors-div {
+        justify-items: center;
+    }
+}
+  
+@media (max-width: 480px) {
+    .techstack-item {
+      width: calc(50% - 0.8rem); /* 2 per row */
+    }
+}
+  

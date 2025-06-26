@@ -4,9 +4,10 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import './index.css';
 
 import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css'; // <-- Make sure this is imported
+import '@mantine/notifications/styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
