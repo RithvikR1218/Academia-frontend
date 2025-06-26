@@ -24,6 +24,8 @@ export default function Navbar() {
       </label>
 
       <div className="nav-links">
+        <Link to="/signup" onClick={() => setIsMenuOpen(false)}>Signup</Link>
+        <span className="dot">•</span>
         <Link to="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
         <span className="dot">•</span>
         <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>Dashboard</Link>

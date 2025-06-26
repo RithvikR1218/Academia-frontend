@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { List, Text, Loader, Modal, Button } from '@mantine/core';
 import axios from 'axios';
+import { notifications } from '@mantine/notifications';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -22,11 +23,14 @@ const UploadedFilesList = ({ uploadedFiles }) => {
         withCredentials: true
       });
       window.location.reload();
-      alert('File deleted successfully.');
     }
     catch (err) {
       console.error('Failed to delete:', err);
-      alert('Could not delete.');
+      notifications.show({
+        title: 'Error!',
+        message: 'File Deletion Failed',
+        color: 'red',
+      });
     } 
     finally {
       setLoading(false);
@@ -50,7 +54,11 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     }
     catch (err) {
       console.error('Failed to fetch file URL:', err);
-      alert('Could not fetch file URL.');
+      notifications.show({
+        title: 'Error!',
+        message: 'Unable to fetch file URL',
+        color: 'red',
+      });
     } 
     finally {
       setLoading(false);

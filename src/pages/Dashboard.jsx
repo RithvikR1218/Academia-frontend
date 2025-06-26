@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { FileInput } from '@mantine/core';
 import UploadedFilesList from '../components/UploadedFiles';
 import UserProfTable from '../components/UserProfTable';
+import { notifications } from '@mantine/notifications';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -15,13 +16,11 @@ function Dashboard() {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    // Step 1: Check if token is in query params (from Google callback redirect)
     const urlParams = new URLSearchParams(window.location.search);
     const tokenFromUrl = urlParams.get('token');
   
     if (tokenFromUrl) {
       localStorage.setItem('token', tokenFromUrl);
-      // Clean up URL
       window.history.replaceState({}, document.title, '/dashboard');
     }
   
@@ -73,7 +72,11 @@ function Dashboard() {
 
   const handleUpload = async () => {
     if(!file){
-      alert("Please select a file to upload.");
+      notifications.show({
+        title: 'Error!',
+        message: 'Please select a file to upload.',
+        color: 'red',
+      });
       return;
     }
 
@@ -100,10 +103,18 @@ function Dashboard() {
       }
 
       console.log('File uploaded successfully:', data.url);
-      alert('Upload success!');
+      notifications.show({
+        title: 'Success!',
+        message: 'File Uploaded Successfully',
+        color: 'green',
+      });
     } catch (error) {
       console.error('Upload failed:', error);
-      alert('Error uploading file.');
+      notifications.show({
+        title: 'Error!',
+        message: 'File Upload Failed',
+        color: 'red',
+      });
     }
     finally {
       setUploading(false);
