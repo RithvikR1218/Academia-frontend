@@ -33,6 +33,9 @@ export default function VerifyOTP() {
     if (e.key === 'Backspace' && !e.target.value && index > 0) {
       inputRefs.current[index - 1].focus();
     }
+    if (e.key === 'Enter') {
+        handleVerify();
+    }
   };
 
   const handleVerify = async () => {
@@ -80,6 +83,9 @@ export default function VerifyOTP() {
 
   return (
     <div className="home-container">
+        <div className="gradient-blob-top"></div>
+        <div className="gradient-blob-bottom"></div>
+        <div className="gradient-blob-footer"></div>
         <div className="login-card">
             <h2 className="hero-h1">Enter OTP</h2>
             <p className="otp-instructions">Verify the 6-digit code to your email</p>

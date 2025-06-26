@@ -11,7 +11,7 @@ export default function SignUp() {
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            handleLocalLogin();
+            handleSignUp();
         }
     };
 
