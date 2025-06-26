@@ -88,6 +88,11 @@ export default function Login() {
                     Login
                 </button>
 
+                <div className="signup-prompt">
+                    <h3>Don't have an account?</h3>
+                    <a href="/signup" className="signup-link">Sign Up</a>
+                </div>
+
                 <div className="divider"></div>
 
                 <button className="login-button" onClick={handleGoogleLogin}>

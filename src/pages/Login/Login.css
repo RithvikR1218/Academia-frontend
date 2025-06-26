@@ -6,14 +6,38 @@
 }
 
 .login-button {
-    background-color: var(--accent-1);
+    position: relative;
+    background: transparent;
     color: var(--text-1);
     border: none;
     padding: 0.6rem 1.5rem;
     font-weight: 800;
-    border-radius: 0.3vw;
+    border-radius: 0.7rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.login-button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(75deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    border-radius: inherit;
+    z-index: -1;
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 2px;
+    box-sizing: border-box;
 }
 
 .login-bar {
@@ -70,4 +94,26 @@
 .hero-h1 {
     margin: 0.5rem 1rem 1rem;
     word-spacing: 0.15rem;
+}
+
+.signup-prompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: cente;
+    align-items: center;
+}
+
+.signup-link{
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    margin: 0.3rem;
+    color: var(--accent-1);
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+    color: var(--accent-2);
 }

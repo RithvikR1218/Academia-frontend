@@ -29,8 +29,6 @@ export default function Navbar() {
       <div className="nav-links">
         {!isAuthenticated && (
           <>
-            <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
-            <span className="dot">•</span>
             <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
             <span className="dot">•</span>
           </>
