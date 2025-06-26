@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, TextInput } from '@mantine/core';
 import College from '../components/College';
 import Department from '../components/Department';
 import ProfTable from '../components/ProfTable';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export default function Search() {
   const [selectedInstitute, setSelectedInstitute] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [researchInterest, setResearchInterest] = useState('');
   const [showTable, setShowTable] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [user, setUser] = useState(null);
   const [filters, setFilters] = useState({
     collegeId: null,
     departmentId: null,

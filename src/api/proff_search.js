@@ -44,3 +44,63 @@ export async function deleteProfessor(id) {
   const res = await axios.delete(`${baseURL}/api/professors/${id}`);
   return res.data;
 }
+
+export async function getUserProfEntries(){
+  const token = localStorage.getItem('token');
+    const res = await axios.get(`${baseURL}/api/user-Prof/user/batch`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}
+
+export async function deleteUserProfEntry(id){
+  const token = localStorage.getItem('token');
+  const res = await axios.delete(`${baseURL}/api/user-Prof/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}
+
+export async function updateUserProfEntry(id,data){
+  const token = localStorage.getItem('token');
+  const res = await axios.put(`${baseURL}/api/user-Prof/${id}`,data,
+  {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}
+
+export async function getAllProfessorsByIds(professorIds){
+  const res = await axios.post(`${baseURL}/api/professors/batch/`,professorIds);
+  return res.data;
+}
+
+export async function insertBatchEntry(data) {
+  const token = localStorage.getItem('token');
+  const res = await axios.post(`${baseURL}/api/user-Prof/batch`, 
+    data, 
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}
+
+  
