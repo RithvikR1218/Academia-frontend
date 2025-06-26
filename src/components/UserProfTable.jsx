@@ -9,7 +9,7 @@ export default function UserProfTable({ userId }) {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const data = await getUserProfEntries(userId);
+      const data = await getUserProfEntries();
       const professorIds = data.map(entry => entry.professorId);
       const professors = await getAllProfessorsByIds(professorIds);
       const profMap = new Map(
@@ -32,19 +32,6 @@ export default function UserProfTable({ userId }) {
     if (userId) fetchData();
   }, [userId]);
 
-  const handleUpdate = async (entry) => {
-    try {
-      console.log(entry);
-      await updateUserProfEntry(entry._id, {
-        contacted: entry.contacted,
-        responded: entry.responded,
-      });
-      console.log("✅ Updated entry:", entry._id);
-    } catch (error) {
-      console.error("❌ Update failed:", error);
-    }
-  };
-
   const handleDelete = async (entryId) => {
     try {
       await deleteUserProfEntry(entryId);
@@ -55,14 +42,30 @@ export default function UserProfTable({ userId }) {
     }
   };
 
-  const handleCheckboxChange = (entryId, field) => {
+  const handleCheckboxChange = async (entry, field) => {
+  try {
+    const updatedValue = !entry[field]; // compute the new value
+    const updatedEntry = {
+      ...entry,
+      [field]: updatedValue,
+    };
     setEntries((prev) =>
-      prev.map((entry) =>
-        entry._id === entryId ? { ...entry, [field]: !entry[field] } : entry
+      prev.map((entry1) =>
+        entry1._id === entry._id ? updatedEntry : entry1
       )
     );
-    console.log(`Entry : ${entryId} was modified`);
-  };
+
+    await updateUserProfEntry(entry._id, {
+      contacted: updatedEntry.contacted,
+      responded: updatedEntry.responded,
+    });
+
+    console.log("✅ Updated entry:", entry._id);
+  } catch (error) {
+    console.error("❌ Update failed:", error);
+  }
+};
+
 
   if (loading) return <Loader />;
 
@@ -83,20 +86,17 @@ export default function UserProfTable({ userId }) {
     <td>
       <Checkbox
         checked={entry.contacted}
-        onChange={() => handleCheckboxChange(entry._id, 'contacted')}
+        onChange={() => handleCheckboxChange(entry, 'contacted')}
       />
     </td>
     <td>
       <Checkbox
         checked={entry.responded}
-        onChange={() => handleCheckboxChange(entry._id, 'responded')}
+        onChange={() => handleCheckboxChange(entry, 'responded')}
       />
     </td>
     <td>
       <Group spacing="xs">
-        <Button size="xs" onClick={() => handleUpdate(entry)}>
-          Update
-        </Button>
         <Button size="xs" color="red" onClick={() => handleDelete(entry._id)}>
           Delete
         </Button>

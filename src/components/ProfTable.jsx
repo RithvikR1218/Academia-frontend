@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
 import { getProfessors, insertBatchEntry } from '../api/proff_search';
 
-export default function ProfTable({ collegeId, departmentId, researchInterests, user }) {
+export default function ProfTable({ collegeId, departmentId, researchInterests}) {
   const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const perPage = 10;
-
   useEffect(() => {
-    console.log('👀 Props received:', { collegeId, departmentId, researchInterests, user });
+    console.log('👀 Props received:', { collegeId, departmentId, researchInterests});
     // rest of code...
   }, [collegeId, departmentId, researchInterests]);  
 
@@ -77,6 +76,12 @@ export default function ProfTable({ collegeId, departmentId, researchInterests, 
   }
 };
   const saveInUserProfTable = async () => {
+    const token = localStorage.getItem('token');
+    if(!token){
+    alert('Login first to save!');
+    window.location.href = '/login';
+    return;
+  }
     try{
     const allProfessors = [];
   let currentPage = 1;
@@ -99,13 +104,13 @@ export default function ProfTable({ collegeId, departmentId, researchInterests, 
 
       currentPage++;
     }
-    await insertBatchEntry(user._id,allProfessors);
+    await insertBatchEntry(allProfessors);
     alert("Saved in dashboard");
   }
   catch(error){
     console.error("Failed to save professors:", error);
   }
-  };
+};
 
   if (loading) return <Loader />;
 
@@ -128,11 +133,11 @@ export default function ProfTable({ collegeId, departmentId, researchInterests, 
         </Button>
       )}
 
-      {user!=null && (
-        <Button onClick={saveInUserProfTable} mb="md">
-          Save Professors
-        </Button>
-      )}
+      
+      <Button onClick={saveInUserProfTable} mb="md">
+        Save Professors
+      </Button>
+      
 
       <Table striped highlightOnHover withTableBorder withColumnBorders>
         <thead>

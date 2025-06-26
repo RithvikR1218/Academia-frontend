@@ -21,29 +21,6 @@ export default function Search() {
   });
 
   const handleSearch = () => {
-    const token = localStorage.getItem('token');
-    if(token){
-    let decoded;
-      try {
-        decoded = jwtDecode(token);
-      } catch (err) {
-        console.error(`Invalid token: ${err}`);
-        localStorage.removeItem('token');
-      }
-    
-      axios
-        .get(`${baseURL}/api/auth/${decoded.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        })
-        .then(res => setUser(res.data))
-        .catch(err => {
-          console.error('Failed to fetch user:', err);
-          localStorage.removeItem('token');
-        });
-      }
     setFilters({
       collegeId: selectedInstitute?.value || null,
       departmentId: selectedDepartment?.value || null,
@@ -84,7 +61,6 @@ export default function Search() {
           collegeId={filters.collegeId}
           departmentId={filters.departmentId}
           researchInterests={filters.researchInterests}
-          user={user}
         />
       )}
     </div>
