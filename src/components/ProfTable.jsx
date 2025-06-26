@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
 import { getProfessors, insertBatchEntry } from '../api/proff_search';
+import { notifications } from '@mantine/notifications';
 
 export default function ProfTable({ collegeId, departmentId, researchInterests}) {
   const [professors, setProfessors] = useState([]);
@@ -78,7 +79,11 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
   const saveInUserProfTable = async () => {
     const token = localStorage.getItem('token');
     if(!token){
-    alert('Login first to save!');
+    notifications.show({
+        title: 'Error!',
+        message: 'Please log in to save.',
+        color: 'red',
+      });
     window.location.href = '/login';
     return;
   }
@@ -105,7 +110,11 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
       currentPage++;
     }
     await insertBatchEntry(allProfessors);
-    alert("Saved in dashboard");
+    notifications.show({
+        title: 'Success!',
+        message: 'Saved in Dashboard successfully',
+        color: 'green',
+      });
   }
   catch(error){
     console.error("Failed to save professors:", error);
