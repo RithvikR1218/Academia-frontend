@@ -4,7 +4,7 @@ import { Loader } from '@mantine/core';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
-import Search from './pages/Search';
+import Search from './pages/Search/Search';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import VerifyOTP from './pages/VerifyOTP/VerifyOTP';

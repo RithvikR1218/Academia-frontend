@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
 import { getProfessors, insertBatchEntry } from '../api/proff_search';
 import { notifications } from '@mantine/notifications';
-import { useNavigate } from 'react-router-dom';
+import './ProfTable.css';
 
 export default function ProfTable({ collegeId, departmentId, researchInterests}) {
   const [professors, setProfessors] = useState([]);
@@ -10,7 +10,6 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const perPage = 10;
-  const navigate = useNavigate();
   useEffect(() => {
     console.log('👀 Props received:', { collegeId, departmentId, researchInterests});
     // rest of code...
@@ -60,7 +59,8 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
       prof.collegeId?.name || 'N/A',
       prof.departmentId?.name || 'N/A',
       prof.position,
-      (prof.researchInterests || []).join(', ')
+    //   (prof.researchInterests || []).join(', ')
+      (prof.researchInterests || [])
     ]);
 
     const csvContent = [headers, ...rows]
@@ -86,8 +86,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
         message: 'Please log in to save.',
         color: 'red',
       });
-
-    navigate('/login');
+    window.location.href = '/login';
     return;
   }
     try{
@@ -128,49 +127,54 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
 
   const rows = professors.map((prof) => (
     <tr key={prof._id}>
-      <td>{prof.name}</td>
-      <td>{prof.email}</td>
-      <td>{prof.collegeId?.name || 'N/A'}</td>
-      <td>{prof.departmentId?.name || 'N/A'}</td>
-      <td>{prof.position}</td>
-      <td>{prof.researchInterests?.join(', ')}</td>
+        <td data-label="Name">{prof.name}</td>
+        <td data-label="Email">{prof.email}</td>
+        <td data-label="College">{prof.collegeId?.name || 'N/A'}</td>
+        <td data-label="Department">{prof.departmentId?.name || 'N/A'}</td>
+        <td data-label="Position">{prof.position}</td>
+        <td data-label="Research Interests" className='research-td'>{prof.researchInterests?.join(', ')}</td>
     </tr>
   ));
 
+
   return (
-    <>
-      {professors.length > 0 && (
-        <Button onClick={downloadCSV} mb="md">
-          Download Current Page as CSV
-        </Button>
-      )}
+    <>  
+        <div className="table-div">
+            <table className='table-container'>
+                <thead>
+                <tr>
+                    <th>Name<i class="fa-solid fa-sort"></i></th>
+                    <th>Email<i class="fa-solid fa-sort"></i></th>
+                    <th>College<i class="fa-solid fa-sort"></i></th>
+                    <th>Department<i class="fa-solid fa-sort"></i></th>
+                    <th>Position<i class="fa-solid fa-sort"></i></th>
+                    <th>Research Interests<i class="fa-solid fa-sort"></i></th>
+                </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
 
-      
-      <Button onClick={saveInUserProfTable} mb="md">
-        Save Professors
-      </Button>
-      
+        <div className="table-bottom">
+            <Button onClick={downloadCSV} className="csv-btn" disabled={professors.length <= 0} mb="md">
+                <i class="fa-solid fa-download"></i>
+                <div>Download Results as CSV</div>
+            </Button>
 
-      <Table striped highlightOnHover withTableBorder withColumnBorders>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>College</th>
-            <th>Department</th>
-            <th>Position</th>
-            <th>Research Interests</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
+            <Pagination
+                value={page}
+                onChange={setPage}
+                total={Math.ceil(total / perPage)}
+                siblings={0}
+                className='page-btn'
+                mt="m"
+            />
 
-      <Pagination
-        value={page}
-        onChange={setPage}
-        total={Math.ceil(total / perPage)}
-        mt="md"
-      />
+            <Button onClick={saveInUserProfTable} className='save-btn' disabled={professors.length <= 0} mb="md">
+                <i class="fa-solid fa-bookmark"></i>
+                <div>Save Professors to Dashboard</div>
+            </Button>
+        </div>
     </>
   );
 }
