@@ -6,8 +6,10 @@
 :root {
     --base-1: #1e1e1e;
     --base-2: #272727;
+    --base-3: #323232;
     --text-1: #fffcf9;
     --text-2: #cccccc;
+    --text-3: #999999;
     --accent-1: #7e6bfd;
     --accent-1-dark: #5b3fd8;
     --accent-2: #ffd896;
@@ -53,7 +55,10 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Other Default Styles */
+/* =====================
+     DEFAULT STYLES
+===================== */
+
 h1 {
     font-family: CabinetGrotesk-Variable, sans-serif;
     font-weight: 800;
@@ -83,4 +88,110 @@ p {
 button {
     background-color: var(--accent-1);
     color: var(--text-1);
+}
+
+
+/* =======================
+     MANTINE OVERRIDES
+======================= */
+
+/* Dropdown Select*/
+.mantine-Select-input {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    height: 100% !important;
+    margin: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    color: var(--base-2) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+}
+
+.mantine-Select-input::placeholder {
+    color: var(--text-3) !important;
+}
+
+.mantine-Select-dropdown {
+    background: var(--text-1) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    color: var(--base-2) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    padding: 0.3rem 0 0.3rem 0.3rem !important;
+}
+
+.mantine-Select-option {
+  font-size: 0.85rem !important;
+}
+
+.mantine-Select-option:hover,
+.mantine-Select-option:focus {
+  background: var(--text-2) !important;
+  color: var(--base-2) !important;
+  border-radius: 0 !important;
+}
+
+/* Text Input */
+.mantine-TextInput-input {
+    border: none !important;
+    background: transparent !important;
+    height: 100% !important;
+    margin: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    color: var(--base-2) !important;
+}
+
+.mantine-TextInput-input::placeholder {
+    color: var(--text-3) !important;
+}
+
+/* Button */
+.mantine-Button-root {
+    background-color: var(--accent-1) !important;
+    border-radius: 100vw !important;
+    color: var(--text-1) !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    margin: auto !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.mantine-Button-root:hover {
+    background-color: var(--accent-1-dark) !important;
+}
+
+/* Pagination */
+.mantine-Pagination-root {
+    --pagination-active-bg: var(--accent-2) !important;
+    --pagination-active-color: var(--base-2) !important;
+    font-family: Satoshi-Variable, serif !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+}
+
+.mantine-Pagination-control {
+    color: var(--base-2) !important;
+    height: 36px !important;
+    width: 36px !important;
+    margin: 0 !important;
+    font-size: 1rem !important;
+}
+
+.mantine-Pagination-control:first-child, .mantine-Pagination-control:last-child {
+    color: var(--base-2) !important;
+    border: 0 !important;
+    border-radius: 100vw !important;
+    background-color: var(--accent-2) !important;
+    height: 24px !important;
+    margin: 0.2rem !important;
+}
+
+.mantine-Pagination-control:first-child svg, .mantine-Pagination-control:last-child svg {
+    height: 12px !important;
 }

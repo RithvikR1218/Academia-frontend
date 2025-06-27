@@ -1,0 +1,187 @@
+.search-container {
+    padding: 7rem 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.search-p {
+    text-transform: uppercase;
+    word-spacing: 0.15rem;
+}
+
+.search-h1 {
+    margin: 0.5rem auto 2rem;
+    word-spacing: 0.15rem;
+    max-width: 75rem;
+}
+
+/* ====================
+     SEARCH SECTION
+==================== */
+
+.search-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: var(--text-1);
+    gap: 0.5rem;
+    max-width: 60rem;
+    margin: 0 auto 6rem;
+    padding: 0 0.5rem;
+    border-radius: 100vw;
+}
+
+.search-flex > * {
+    height: 48px;
+    min-width: 100px;
+}
+
+/* College & Department */
+.search-flex > :nth-child(1), .search-flex > :nth-child(3) {
+    flex: 1 1 125px;
+    margin: 1rem 0 0;
+    max-width: 175px;
+}
+
+/* College */
+.search-flex > :nth-child(1) {
+    padding: 0 0 0 0.5rem;
+}
+
+/* Research Interests */
+.search-flex > :nth-child(5) {
+    flex: 2 1 250px
+}
+
+/* Search Button */
+.search-flex > :nth-child(6) {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border-radius: 100vw;
+    cursor: pointer;
+    height: 48px;
+    transition: background-color 0.3s ease;
+}
+
+.search-flex > :nth-child(6) i {
+    margin: 0 0.5rem 0 0;
+}
+
+.search-flex > :nth-child(6):hover {
+    background-color: var(--accent-1-dark);
+}
+
+
+/* ======================
+     GRADIENT BLOB
+====================== */
+
+.gradient-blob-top {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(90deg, var(--accent-2-dark), var(--accent-1-dark));
+    top: 0%;
+    left: 0%;
+    height: 15rem;
+    width: 15rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-bottom {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(270deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 50%;
+    right: 0%;
+    height: 20rem;
+    width: 20rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-footer {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(90deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 0%;
+    left: 15%;
+    height: 15rem;
+    width: 15rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+@keyframes animate {
+    0% {
+      transform: translate(40%, -25%);
+      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    }
+    50% {
+      transform: translate(0%, 13%);
+      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+      rotate: 41deg;
+      scale: 1.15;
+    }
+    100% {
+      transform: translate(-45%, 39%);
+      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+      rotate: -60deg;
+      scale: 1.05;
+    }
+}
+
+
+/* =====================
+     RESPONSIVENESS
+===================== */
+
+@media (max-width: 992px) {
+    .search-flex {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        padding: 5rem 2rem 1rem;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .search-h1 {
+        margin: 0 auto 1rem;
+        font-size: 4rem;
+        line-height: 4rem;
+    }
+
+    .search-flex {
+        margin: 0 auto;
+        padding: 0 0.5rem 0.5rem;
+        border-radius: 6vw;
+    }
+
+    /* College */
+    .search-flex > :nth-child(1) {
+        padding: 0;
+    }
+
+    /* Search Button */
+    .search-flex > :nth-child(6) {
+        width: 98%;
+    }
+}

@@ -20,8 +20,7 @@ export default function College({ value, onChange }) {
 
   return (
     <Select
-      label="Select Institute"
-      placeholder="Pick an institute"
+      placeholder="Institute"
       data={institutes}
       value={value}
       onChange={(_val, option) => onChange(option)}

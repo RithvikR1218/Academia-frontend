@@ -35,8 +35,7 @@ export default function Department({ value, onChange }) {
   
     return (
       <Select
-        label="Select Department"
-        placeholder="Pick Department"
+        placeholder="Department"
         data={departments}
         clearable
         searchable
