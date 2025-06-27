@@ -1,7 +1,7 @@
 import './Login.css';
 import { useState, useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
@@ -93,7 +93,7 @@ export default function Login() {
 
                 <div className="signup-prompt">
                     <h3>Don't have an account?</h3>
-                    <a href="/signup" className="signup-link">Sign Up</a>
+                    <Link to="/signup" className="signup-link">Sign Up</Link>
                 </div>
 
 
