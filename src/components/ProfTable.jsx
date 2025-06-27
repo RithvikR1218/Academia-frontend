@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
 import { getProfessors, insertBatchEntry } from '../api/proff_search';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfTable({ collegeId, departmentId, researchInterests}) {
   const [professors, setProfessors] = useState([]);
@@ -9,6 +10,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const perPage = 10;
+  const navigate = useNavigate();
   useEffect(() => {
     console.log('👀 Props received:', { collegeId, departmentId, researchInterests});
     // rest of code...
@@ -84,7 +86,8 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
         message: 'Please log in to save.',
         color: 'red',
       });
-    window.location.href = '/login';
+
+    navigate('/login');
     return;
   }
     try{
