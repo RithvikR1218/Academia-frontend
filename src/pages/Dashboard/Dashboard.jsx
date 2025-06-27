@@ -124,8 +124,8 @@ function Dashboard() {
     }
   };
 
-
   if (!user) return <div></div>;
+
 
   return (
     <div className='dashboard-container'>
