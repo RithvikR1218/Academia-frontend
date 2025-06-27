@@ -4,7 +4,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { FileInput } from '@mantine/core';
 import UploadedFilesList from '../../components/UploadedFiles/UploadedFiles';
-import UserProfTable from '../../components/UserProfTable';
+import UserProfTable from '../../components/UserProfTable/UserProfTable';
 import { notifications } from '@mantine/notifications';
 import './Dashboard.css';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -159,7 +159,7 @@ function Dashboard() {
       
       <h2>Uploaded Files</h2>
       <UploadedFilesList uploadedFiles={user.uploadedFiles} />
-      <h2>My Professors</h2>
+      <h2 className="heading-title">My Professors</h2>
       <UserProfTable userId={user._id}/>
     </div>
   );

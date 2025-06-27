@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Table, Loader, Button, Checkbox, Group, Text } from '@mantine/core';
-import { getUserProfEntries, deleteUserProfEntry, updateUserProfEntry, getAllProfessorsByIds } from '../api/proff_search'; 
-
+import { getUserProfEntries, deleteUserProfEntry, updateUserProfEntry, getAllProfessorsByIds } from '../../api/proff_search'; 
+import './UserProfTable.css';
 export default function UserProfTable({ userId }) {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -106,23 +106,69 @@ export default function UserProfTable({ userId }) {
 ));
 
 if (!entries || entries.length === 0) {
-  return <Text>No professors selected.</Text>;
+  return <Text className="no-professors-text">No professors selected.</Text>;
 }
 
 return (
-  <Table striped highlightOnHover withTableBorder withColumnBorders>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Website</th>
-        <th>Position</th>
-        <th>Contacted</th>
-        <th>Responded</th>
-        <th>Actions</th>
+  <div className="table-container">
+  <Table striped highlightOnHover withTableBorder withColumnBorders className="my-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Position</th>
+      <th>Contacted</th>
+      <th>Responded</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {entries.map((entry) => (
+      <tr key={entry._id}>
+        <td>{entry.professor?.name || '—'}</td>
+        <td>{entry.professor?.email || '—'}</td>
+        <td>
+          {entry.professor?.personal_website ? (
+            <a
+              href={entry.professor.personal_website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="my-link"
+            >
+              Website
+            </a>
+          ) : (
+            '—'
+          )}
+        </td>
+        <td>{entry.professor?.position || '—'}</td>
+        <td>
+          <Checkbox className="checkbox-cell"
+            checked={entry.contacted}
+            onChange={() => handleCheckboxChange(entry, 'contacted')}
+          />
+        </td>
+        <td>
+          <Checkbox className="checkbox-cell"
+            checked={entry.responded}
+            onChange={() => handleCheckboxChange(entry, 'responded')}
+          />
+        </td>
+        <td className="action-cell">
+          <Group spacing="xs">
+            <button
+              className="my-delete-button"
+              onClick={() => handleDelete(entry._id)}
+            >
+              Delete
+            </button>
+          </Group>
+        </td>
       </tr>
-    </thead>
-    <tbody>{rows}</tbody>
-  </Table>
+    ))}
+  </tbody>
+</Table>
+</div>
 );
 }
