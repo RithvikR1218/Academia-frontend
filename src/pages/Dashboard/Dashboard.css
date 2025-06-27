@@ -1,8 +1,8 @@
 .dashboard-container {
     padding: 7rem 2rem 1rem;
     position: relative;
-    overflow: hidden;
     z-index: 0;
+    overflow: visible;
 }
 
 .welcome-container {

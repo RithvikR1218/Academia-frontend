@@ -3,17 +3,44 @@
     position: relative;
     overflow: hidden;
     z-index: 0;
+
+    overflow: visible;
 }
 
 .otp-button {
-    background-color: var(--accent-1);
+    position: relative;
+    background: transparent;
     color: var(--text-1);
     border: none;
     padding: 0.6rem 1.5rem;
     font-weight: 800;
-    border-radius: 0.3vw;
+    border-radius: 0.7rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    z-index: 1;
+    transition: color 0.3s ease;
+    margin: 0.6rem auto;
+}
+
+.otp-button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(75deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    border-radius: inherit;
+    z-index: -1;
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 2px;
+    box-sizing: border-box;
 }
 
 .otp-bar {
@@ -26,7 +53,7 @@
     padding: 0.35rem 0.35rem 0.35rem 0.85rem;
     max-width: 25rem;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0.6rem auto;
     gap: 0.5rem;
 }
 

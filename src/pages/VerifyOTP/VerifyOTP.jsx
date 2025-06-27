@@ -14,27 +14,45 @@ export default function VerifyOTP() {
     }
   }, []);
 
-  const handleChange = (e, index) => {
-    const value = e.target.value;
+  const focusAndPlaceCursorEnd = (input) => {
+    input.focus();
+    const length = input.value.length;
+    input.setSelectionRange(length, length);
+};
 
-    if (/^\d$/.test(value)) {
-        e.target.value = value;
-        if (index < 5) {
-            inputRefs.current[index + 1].focus();
+    const handleChange = (e, index) => {
+        const value = e.target.value;
+
+        if (/^\d$/.test(value)) {
+            e.target.value = value;
+            if (index < 5) {
+                const nextInput = inputRefs.current[index + 1];
+                if (nextInput) focusAndPlaceCursorEnd(nextInput);
+            }
         }
-    } 
-    else {
-        e.target.value = '';
-        inputRefs.current[index].focus();
+        else {
+            e.target.value = '';
+            const currentInput = inputRefs.current[index];
+            if (currentInput) focusAndPlaceCursorEnd(currentInput);
+        }
     }
-  };
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !e.target.value && index > 0) {
-      inputRefs.current[index - 1].focus();
+        const prevInput = inputRefs.current[index - 1];
+        if (prevInput) focusAndPlaceCursorEnd(prevInput);
     }
     if (e.key === 'Enter') {
         handleVerify();
+    }
+    if (e.key === 'ArrowRight' && index < 5) {
+        const nextInput = inputRefs.current[index + 1];
+        if (nextInput) focusAndPlaceCursorEnd(nextInput);
+    }
+    if (e.key === 'ArrowLeft' && index > 0) {
+        e.preventDefault();
+        const prevInput = inputRefs.current[index - 1];
+        if (prevInput) focusAndPlaceCursorEnd(prevInput);
     }
   };
 
