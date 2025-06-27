@@ -1,12 +1,14 @@
 import './Login.css';
 import { useState, useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -17,9 +19,9 @@ export default function Login() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            window.location.href = '/dashboard';
+            navigate('/dashboard')
         }
-    }, []);
+    }, [navigate]);
 
     const handleGoogleLogin = () => {
         window.location.href = `${baseURL}/api/auth/google`; 
@@ -50,7 +52,7 @@ export default function Login() {
             if (response.ok) {
                 const { _, token } = await response.json();
                 localStorage.setItem('token', token);
-                window.location.href = '/dashboard';
+                navigate('/dashboard')
             } 
             else {
                 const { error } = await response.json();

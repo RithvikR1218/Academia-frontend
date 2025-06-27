@@ -7,6 +7,7 @@ import UploadedFilesList from '../../components/UploadedFiles/UploadedFiles';
 import UserProfTable from '../../components/UserProfTable/UserProfTable';
 import { notifications } from '@mantine/notifications';
 import './Dashboard.css';
+import { useNavigate } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function Dashboard() {
@@ -14,7 +15,7 @@ function Dashboard() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [refresh, setRefresh] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     localStorage.removeItem('email'); 
     const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +29,7 @@ function Dashboard() {
     const token = localStorage.getItem('token');
   
     if (!token) {
-      window.location.href = '/login';
+      navigate('/login')
       return;
     }
   
@@ -38,7 +39,7 @@ function Dashboard() {
     } catch (err) {
       console.error(`Invalid token: ${err}`);
       localStorage.removeItem('token');
-      window.location.href = '/';
+      navigate('/')
       return;
     }
   
@@ -53,9 +54,9 @@ function Dashboard() {
       .catch(err => {
         console.error('Failed to fetch user:', err);
         localStorage.removeItem('token');
-        window.location.href = '/';
+        navigate('/')
       });
-  }, [refresh]);
+  }, [refresh, navigate]);
 
   const handleLogout = async () => {
     try {
@@ -67,7 +68,7 @@ function Dashboard() {
     } finally {
       localStorage.removeItem('token');
       setUser(null);
-      window.location.href = '/';
+      navigate('/login')
     }
   };
 

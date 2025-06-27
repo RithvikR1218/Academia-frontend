@@ -1,6 +1,7 @@
 import './SignUp.css';
 import { useState, useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
@@ -8,6 +9,7 @@ export default function SignUp() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -18,9 +20,9 @@ export default function SignUp() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            window.location.href = '/dashboard';
+            navigate('/dashboard')
         }
-    }, []);
+    }, [navigate]);
 
     const handleGoogleLogin = () => {
         window.location.href = `${baseURL}/api/auth/google`; 
@@ -51,7 +53,7 @@ export default function SignUp() {
 
             if (response.ok) {
                 localStorage.setItem('email', email);
-                window.location.href = '/verify-otp';
+                navigate('/verify-otp');
             } 
             else {
                 const { error } = await response.json();
