@@ -1,18 +1,19 @@
 import './VerifyOTP.css';
 import { useRef, useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
 export default function VerifyOTP() {
   const inputRefs = useRef([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedEmail = localStorage.getItem('email');
     if (!storedEmail) {
-        window.location.href = '/signup';
+        navigate('/signup')
     }
-  }, []);
+  }, [navigate]);
 
   const focusAndPlaceCursorEnd = (input) => {
     input.focus();
@@ -79,7 +80,7 @@ export default function VerifyOTP() {
 
         if(response.ok){
             localStorage.removeItem('email');
-            window.location.href = '/login';
+            navigate('/login')
         }
         else {
             const { error } = await response.json();
