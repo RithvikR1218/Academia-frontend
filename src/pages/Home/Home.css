@@ -1,7 +1,7 @@
 .home-container {
     padding: 7rem 2rem 1rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     z-index: 0;
 }
 

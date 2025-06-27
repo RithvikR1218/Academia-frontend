@@ -28,7 +28,7 @@ function Dashboard() {
     const token = localStorage.getItem('token');
   
     if (!token) {
-      window.location.href = '/';
+      window.location.href = '/login';
       return;
     }
   
@@ -124,8 +124,8 @@ function Dashboard() {
     }
   };
 
+  if (!user) return <div></div>;
 
-  if (!user) return <div>Loading or not authenticated...</div>;
 
   return (
     <div className='dashboard-container'>
