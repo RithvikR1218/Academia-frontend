@@ -8,7 +8,7 @@
 .welcome-container {
     text-align: center;
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     justify-content: space-between;
     align-items: center;
     
@@ -17,9 +17,11 @@
 .upload-container {
     text-align: center;
     display: flex;
-    margin-bottom: 2rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    margin: 0 auto 2rem;
+    gap: 2rem;
+    max-width: fit-content;
 }
 
 .logout-button {
@@ -82,4 +84,17 @@
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
+}
+
+.dash-flex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: auto;
+}
+
+@media (max-width: 992px) {
+    .dash-flex {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { FileInput } from '@mantine/core';
 import UploadedFilesList from '../../components/UploadedFiles/UploadedFiles';
+import SummaryFilesList from '../../components/SummaryFiles/SummaryFiles';
 import UserProfTable from '../../components/UserProfTable/UserProfTable';
 import { notifications } from '@mantine/notifications';
 import './Dashboard.css';
@@ -139,27 +140,33 @@ function Dashboard() {
           <i class="fas fa-sign-out"></i>&nbsp;
           Logout
         </button>
+      </div>    
+      <div className="dash-flex">
+        <div className='dash-upload'>
+            <h2>Uploaded Files</h2>
+            <UploadedFilesList uploadedFiles={user.uploadedFiles} />
+            <div className='upload-container'>
+                <FileInput 
+                accept="application/pdf" 
+                placeholder="Add File" 
+                value={file}
+                onChange={setFile} 
+                />
+                <Button 
+                onClick={handleUpload} 
+                color="blue"
+                disabled={uploading || !file}
+                loading={uploading}
+                >
+                Upload
+                </Button>
+            </div>  
+        </div>
+        <div className="dash-summary">
+            <h2>Summary Files</h2>
+            <SummaryFilesList uploadedFiles={user.uploadedFiles} />
+        </div>
       </div>
-      <div className='upload-container'>
-        <FileInput 
-          accept="application/pdf" 
-          placeholder="Add File" 
-          value={file}
-          onChange={setFile} 
-        />
-        <Button 
-          onClick={handleUpload} 
-          color="blue" 
-          disabled={uploading || !file}
-          loading={uploading}
-        >
-          Upload
-        </Button>
-      </div>
-      
-      
-      <h2>Uploaded Files</h2>
-      <UploadedFilesList uploadedFiles={user.uploadedFiles} />
       <h2 className="heading-title">My Professors</h2>
       <UserProfTable userId={user._id}/>
     </div>
