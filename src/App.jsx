@@ -9,8 +9,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import VerifyOTP from './pages/VerifyOTP/VerifyOTP';
 import Dashboard from './pages/Dashboard/Dashboard';
-import AdminPanel from './pages/Admin/AdminPanel';
-import SynonymAdminPanel from './pages/Admin/SynonymAdminPanel';
+// import AdminPanel from './pages/Admin/AdminPanel';
+// import SynonymAdminPanel from './pages/Admin/SynonymAdminPanel';
 import './App.css';
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
             <Route path="/verify-otp" element={<VerifyOTP />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin" element={<AdminPanel />} />
-            <Route path="/admin/synonyms" element={<SynonymAdminPanel />} />
+            {/* <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/admin/synonyms" element={<SynonymAdminPanel />} /> */}
           </Routes>
         </main>
         <Footer />
