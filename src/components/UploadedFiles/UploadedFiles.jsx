@@ -104,30 +104,34 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     <List spacing="xs" size="sm" center>
       {uploadedFiles.map((file, index) => (
         <List.Item key={index} className='list-item'>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleFileClick(file);
-            }}
-            className="list-link"
-          >
-            {file}
-          </a>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(file)}
-          >
-          <i className="fas fa-trash-alt"></i>&nbsp;
-            Delete
-          </button>
-          <button
-            className="summarise-button"
-            onClick={() => handleSummarise(file)}
-          >
-          <i className="fa-solid fa-file"></i>&nbsp;
-            Summarise
-          </button>
+          <div className='list-item-container'>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleFileClick(file);
+              }}
+              className="list-link"
+            >
+              {file}
+            </a>
+            <div className='button-container'>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(file)}
+              >
+              <i className="fas fa-trash-alt"></i>&nbsp;
+                Delete
+              </button>
+              <button
+                className="summarise-button"
+                onClick={() => handleSummarise(file)}
+              >
+              <i className="fa-solid fa-file"></i>&nbsp;
+                Summarise
+              </button>
+            </div>
+          </div>
         </List.Item>
       ))}
     </List>
