@@ -22,59 +22,10 @@
 /* ==================
      MAIN TABLE
 ================== */
-
-.table-div {
-    background-color: var(--base-2);
-    background: linear-gradient(180deg, var(--base-2), var(--base-1));
-    border-radius: 2.5vw;
-    max-width: 55rem;
-    margin: 0 auto 2rem;
-    padding: 0.5rem 1rem;
-}
-
-.table-container {
-    color: var(--text-2);
-    font-size: 0.8rem;
-    font-weight: 500;
-    width: 100%;
-    border-collapse: collapse;
-    max-width: 55rem;
-}
   
-.table-container th,
-.table-container td {
-    border-bottom: 1px solid var(--text-1);
-    text-align: left;
-    padding: 0.6rem;
-    min-width: 90px;
-}
-
-.table-container th:nth-child(4),
-.table-container td:nth-child(4) {
+.prof-table th:nth-child(4),
+.prof-table td:nth-child(4) {
     min-width: 125px;
-}
-
-.table-container th {
-    font-family: CabinetGrotesk-Variable, sans-serif;
-    color: var(--text-1);
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.table-container tr:last-child td {
-    border-bottom: none;
-}
-
-.table-container tbody tr:hover {
-    background-color: var(--base-3);
-    cursor: pointer;
-}
-
-.table-container thead i {
-    color: var(--accent-2);
-    font-size: 0.9rem;
-    margin: 0 0 0 0.4rem;
-    cursor: pointer;
 }
 
 .research-td {
@@ -83,63 +34,11 @@
     text-transform: capitalize;
     font-weight: 400;
 }
-  
-
-/* ==========================
-     TABLE RESPONSIVENESS
-========================== */
-
-@media (max-width: 992px) {
-    .table-div {
-        margin: 1.5rem auto 2rem;
-        border: none;
-        padding: 1rem 1rem;
-        background: transparent;
-    }
-
-    .table-container thead {
-        display: none;
-    }
-  
-    .table-container tr {
-        display: block;
-        margin: 0 auto 1.5rem;
-        border-radius: 2.5vw;
-        background-color: var(--base-2);
-        max-width: 30rem;
-        overflow: hidden;
-    }
-  
-    .table-container td {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1rem;
-      gap: 0.35rem;
-      border: none;
-      text-align: right;
-    }
-
-    .table-container td::before {
-      content: attr(data-label);
-      font-family: CabinetGrotesk-Variable, sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      flex-basis: 50%;
-      color: var(--text-3);
-      text-align: left;
-    }
-
-    .table-container tr:last-child {
-        margin: 0 auto;
-    }
-}
-  
 
 
-/* ==========================
-     OTHER RESPONSIVENESS
-========================== */
+/* =====================
+     RESPONSIVENESS
+===================== */
 
 @media (max-width: 1024px) {
     .csv-btn {

@@ -14,6 +14,8 @@
     --accent-1-dark: #5b3fd8;
     --accent-2: #ffd896;
     --accent-2-dark: #f1c16d;
+    --accent-3: #FF5C57;
+    --accent-3-dark: #DC143C;
 }
 
 /* Reset and base styles */
@@ -88,6 +90,107 @@ p {
 button {
     background-color: var(--accent-1);
     color: var(--text-1);
+}
+
+
+/* ====================
+     TABLE STYLES
+==================== */
+
+.table-div {
+    background-color: var(--base-2);
+    background: linear-gradient(180deg, var(--base-2), var(--base-1));
+    border-radius: 2.5vw;
+    max-width: 55rem;
+    margin: 0 auto 2rem;
+    padding: 0.5rem 1rem;
+}
+
+.table-container {
+    color: var(--text-2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 55rem;
+}
+  
+.table-container th,
+.table-container td {
+    border-bottom: 1px solid var(--text-1);
+    text-align: left;
+    padding: 0.6rem;
+    min-width: 90px;
+}
+
+.table-container th {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    color: var(--text-1);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.table-container tr:last-child td {
+    border-bottom: none;
+}
+
+.table-container tbody tr:hover {
+    background-color: var(--base-3);
+    cursor: pointer;
+}
+
+.table-container thead i {
+    color: var(--accent-2);
+    font-size: 0.9rem;
+    margin: 0 0 0 0.4rem;
+    cursor: pointer;
+}
+  
+/* Responsiveness */
+@media (max-width: 992px) {
+    .table-div {
+        margin: 1.5rem auto 2rem;
+        border: none;
+        padding: 1rem 1rem;
+        background: transparent;
+    }
+
+    .table-container thead {
+        display: none;
+    }
+  
+    .table-container tr {
+        display: block;
+        margin: 0 auto 1.5rem;
+        border-radius: 2.5vw;
+        background-color: var(--base-2);
+        max-width: 30rem;
+        overflow: hidden;
+    }
+  
+    .table-container td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      gap: 0.35rem;
+      border: none;
+      text-align: right;
+    }
+
+    .table-container td::before {
+      content: attr(data-label);
+      font-family: CabinetGrotesk-Variable, sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-basis: 50%;
+      color: var(--text-3);
+      text-align: left;
+    }
+
+    .table-container tr:last-child {
+        margin: 0 auto;
+    }
 }
 
 
@@ -194,4 +297,108 @@ button {
 
 .mantine-Pagination-control:first-child svg, .mantine-Pagination-control:last-child svg {
     height: 12px !important;
+}
+
+
+/* ======================
+     GRADIENT BLOB
+====================== */
+
+.gradient-blob-1 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(90deg, var(--accent-2-dark), var(--accent-1-dark));
+    top: 0%;
+    left: 0%;
+    height: 15rem;
+    width: 15rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-2 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(270deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 50%;
+    right: 0%;
+    height: 20rem;
+    width: 20rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-3 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 0%;
+    left: 15%;
+    height: 20rem;
+    width: 20rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 37.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-4 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    top: 25%;
+    left: 25%;
+    height: 10rem;
+    width: 10rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 17.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-5 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 25%;
+    right: 20%;
+    height: 10rem;
+    width: 10rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 17.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+@keyframes animate {
+    0% {
+      transform: translate(40%, -25%);
+      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    }
+    50% {
+      transform: translate(0%, 13%);
+      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+      rotate: 41deg;
+      scale: 1.15;
+    }
+    100% {
+      transform: translate(-45%, 39%);
+      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+      rotate: -60deg;
+      scale: 1.05;
+    }
 }

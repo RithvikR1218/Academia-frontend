@@ -1,0 +1,103 @@
+
+.red-button {
+    background-color: var(--accent-3) !important;
+}
+
+.red-button:hover {
+    background-color: var(--accent-3-dark) !important;
+}
+
+
+/* ==============
+     ADMIN
+============== */
+
+.top-admin {
+    padding: 7rem 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-search {
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--text-1);
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 100vw;
+}
+
+.admin-pgn-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+
+/* =================
+     SYNONYMS
+================= */
+
+.syn-full {
+    padding: 7rem 2rem 1rem;
+}
+
+.syn-search {
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--text-1);
+    padding: 0.5rem;
+    margin: 1rem auto 2rem;
+    border-radius: 100vw;
+    max-width: 60rem;
+}
+
+.syn-search > :nth-child(1) {
+    flex: 1 1 200px;
+    max-width: 250px;
+    min-width: 200px;
+}
+
+.syn-search > :nth-child(2) {
+    flex: 2 1 500px;
+    max-width: 500px;
+}
+
+.syn-search > :nth-child(3) {
+    flex: 1 1 100px;
+    min-width: 100px;
+}
+
+.syn-table th:last-child {
+    text-align: center;
+}
+
+
+/* ====================
+     RESPONSIVENESS
+==================== */
+
+@media (max-width: 768px) {
+    .syn-search {
+        display: grid;
+        margin: 0 auto;
+        padding: 0.5rem 0 1rem;
+        max-width: 20rem;
+        border-radius: 4vw;
+        
+    }
+    
+    .syn-search > * {
+        margin: 0.5rem;
+    }
+
+    .syn-search:nth-child(3) {
+        margin: 1rem;
+    }
+}

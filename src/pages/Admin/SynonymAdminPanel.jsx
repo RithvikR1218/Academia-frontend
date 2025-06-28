@@ -16,8 +16,9 @@ import {
     deleteSynonym,
     createSynonym,
     updateSynonym,
-  } from '../api/synonyms';
+  } from '../../api/synonyms';
   import { notifications } from '@mantine/notifications';
+  import './Admin.css';
   
   export default function SynonymAdminPanel() {
     const [synonyms, setSynonyms] = useState([]);
@@ -133,23 +134,16 @@ import {
     };
   
     return (
-      <ScrollArea>
-        <Text fw={600} size="lg" mb="sm">
-          Synonym Admin Panel
-        </Text>
-  
+      <ScrollArea className='syn-full'>
         <Box mb="md">
-          <Text fw={500} mb="xs">
-            Create New Synonym Group
-          </Text>
-          <Group grow mb="xs">
+          <div className='syn-search'>
             <TextInput
-              placeholder="Group name (unique)"
+              placeholder="Unique Group Name"
               value={newSynonym.name}
               onChange={(e) => setNewSynonym({ ...newSynonym, name: e.target.value })}
             />
             <TextInput
-              placeholder="Comma-separated synonyms"
+              placeholder="Synonyms with Commas"
               value={newSynonym.synonyms}
               onChange={(e) => setNewSynonym({ ...newSynonym, synonyms: e.target.value })}
             />
@@ -160,14 +154,14 @@ import {
             >
               Add
             </Button>
-          </Group>
-          <Divider />
+          </div>
         </Box>
   
         {loading ? (
           <Loader mt="md" />
         ) : (
-          <Table striped highlightOnHover withColumnBorders>
+          <div className="table-div">
+          <table className='syn-table table-container'>
             <thead>
               <tr>
                 <th>Name</th>
@@ -179,7 +173,7 @@ import {
             <tbody>
               {synonyms.map((syn) => (
                 <tr key={syn._id}>
-                  <td>
+                  <td data-label='Name'>
                     {editingId === syn._id ? (
                       <TextInput
                         value={edited.name}
@@ -189,7 +183,7 @@ import {
                       syn.name
                     )}
                   </td>
-                  <td>
+                  <td data-label='Synonyms'>
                     {editingId === syn._id ? (
                       <TextInput
                         value={edited.synonyms.join(', ')}
@@ -204,8 +198,8 @@ import {
                       syn.synonyms.join(', ')
                     )}
                   </td>
-                  <td>{syn.active ? 'Yes' : 'No'}</td>
-                  <td>
+                  <td data-label='Active'>{syn.active ? 'Yes' : 'No'}</td>
+                  <td data-label='Actions'>
                     {editingId === syn._id ? (
                       <Group>
                         <Button
@@ -221,6 +215,7 @@ import {
                           color="gray"
                           onClick={handleCancel}
                           leftSection={<IconX size={14} />}
+                          className='red-button'
                         >
                           Cancel
                         </Button>
@@ -239,6 +234,7 @@ import {
                           color="red"
                           leftSection={<IconTrash size={14} />}
                           onClick={() => handleDelete(syn._id)}
+                          className='red-button'
                         >
                           Delete
                         </Button>
@@ -248,7 +244,8 @@ import {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </table>
+          </div>
         )}
       </ScrollArea>
     );

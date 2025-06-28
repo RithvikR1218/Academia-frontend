@@ -4,9 +4,9 @@ import './Home.css';
 export default function Home() {
   return (
     <div className="home-container">
-        <div className="gradient-blob-top"></div>
-        <div className="gradient-blob-bottom"></div>
-        <div className="gradient-blob-footer"></div>
+        <div className="gradient-blob-1"></div>
+        <div className="gradient-blob-2"></div>
+        <div className="gradient-blob-3"></div>
         <p className="hero-p">For Research Driven Students</p>
         <h1 className="hero-h1">Discover the Best Professors Quickly</h1>
         <div className="search-bar">
