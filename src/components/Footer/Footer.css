@@ -6,6 +6,7 @@
     padding: 1rem 2rem;
     gap: 2rem;
     background: linear-gradient(0deg, var(--base-2), var(--base-1));
+    z-index: 9999;
 }
 
 

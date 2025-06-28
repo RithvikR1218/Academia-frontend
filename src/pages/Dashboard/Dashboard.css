@@ -23,14 +23,58 @@
 }
 
 .logout-button {
-    background-color: var(--base-1);
+    position: relative;
+    background: transparent;
     color: var(--text-1);
     border: none;
     padding: 0.6rem 1.5rem;
     font-weight: 800;
     border-radius: 100vw;
     cursor: pointer;
+    z-index: 1;
     transition: background-color 0.3s ease;
+    margin: 0;
+}
+
+.logout-button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    border-radius: inherit;
+    z-index: -1;
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.logout-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.logout-button:hover::before {
+    opacity: 0;
+}
+
+.logout-button:hover::after {
+    opacity: 1;
 }
 
 .heading-title {

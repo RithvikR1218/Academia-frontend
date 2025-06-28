@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Table, Loader, Pagination, Button } from '@mantine/core';
-import { getProfessors, insertBatchEntry } from '../api/proff_search';
+import { getProfessors, insertBatchEntry } from '../../api/proff_search';
 import { notifications } from '@mantine/notifications';
 import './ProfTable.css';
 
