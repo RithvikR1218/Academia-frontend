@@ -24,7 +24,7 @@ function Dashboard() {
   
     if (tokenFromUrl) {
       localStorage.setItem('token', tokenFromUrl);
-      window.history.replaceState({}, document.title, '/dashboard');
+      navigate('/dashboard', { replace: true });
     }
   
     const token = localStorage.getItem('token');
@@ -72,6 +72,11 @@ function Dashboard() {
       navigate('/login')
     }
   };
+
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  }
 
   const handleUpload = async () => {
     if(!file){
@@ -141,25 +146,30 @@ function Dashboard() {
           Logout
         </button>
       </div>    
-      <div className="dash-flex">
+      <div>
         <div className='dash-upload'>
             <h2>Uploaded Files</h2>
             <UploadedFilesList uploadedFiles={user.uploadedFiles} />
             <div className='upload-container'>
-                <FileInput 
-                accept="application/pdf" 
-                placeholder="Add File" 
-                value={file}
-                onChange={setFile} 
+                <label htmlFor="customFileInput" className="logout-button">
+                  {file ? file.name : 'Add File'}
+                </label>
+                <input
+                  type="file"
+                  id="customFileInput"
+                  accept="application/pdf"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
                 />
-                <Button 
+                <button 
                 onClick={handleUpload} 
                 color="blue"
                 disabled={uploading || !file}
                 loading={uploading}
+                className="logout-button"
                 >
                 Upload
-                </Button>
+                </button>
             </div>  
         </div>
         {/* <div className="dash-summary">

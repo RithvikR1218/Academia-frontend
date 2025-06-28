@@ -12,12 +12,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // true if token exists
-  }, []);
+    setIsAuthenticated(!!token);
+  }, [location]);
 
   return (
     <nav className={`nav-container ${menuOpen ? 'open' : ''} ${isHome ? 'home' : ''}`}>
-      <Link to="/" className='logo-link' onClick={() => setMenuOpen(false)}>Prof DB</Link>
+      <Link to="/" className='logo-link' onClick={() => setMenuOpen(false)}>Academia</Link>
 
       <input type="checkbox" id="menu-toggle" className="menu-toggle" onClick={toggleMenu} />
       <label htmlFor="menu-toggle" className="hamburger">

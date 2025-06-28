@@ -9,8 +9,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import VerifyOTP from './pages/VerifyOTP/VerifyOTP';
 import Dashboard from './pages/Dashboard/Dashboard';
-const SynonymAdminPanel = lazy(() => import('./pages/Admin/SynonymAdminPanel'));
-const AdminPanel = lazy(() => import('./pages/Admin/AdminPanel'));
+import AdminPanel from './pages/Admin/AdminPanel';
+import SynonymAdminPanel from './pages/Admin/SynonymAdminPanel';
 import './App.css';
 
 function App() {

@@ -7,7 +7,6 @@
   border-radius: 100vw;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 1rem;
 }
 
 .delete-button:hover {
@@ -24,7 +23,6 @@
   border-radius: 100vw;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 1rem;
   margin-left: 1rem;
 }
 
@@ -49,24 +47,25 @@
   color: var(--text-1);
   text-decoration: none;
   flex-grow: 1;
-  max-width: 80%;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 0.6rem 1.5rem 0.6rem 0;  
+  padding: 0.6rem 0;  
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .list-container {
-    width: 100%;
+    width: 40%;
     margin: 2rem auto 1rem;
     padding: 1rem 1.5rem;
     background-color: var(--base-2);
     border-radius: 4vw;
 }
 
-
-@media (max-width: 768px) {
-    .list-item {
-        font-size: 0.65rem !important;
-    }
+.list-item-container {
+  display:flex;
+  flex-direction: column;
 }
