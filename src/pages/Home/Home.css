@@ -179,15 +179,15 @@
     position: absolute;
     border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
     background: var(--accent-1-dark);
-    background: linear-gradient(90deg, var(--accent-2-dark), var(--accent-1-dark));
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
     bottom: 0%;
     left: 15%;
-    height: 15rem;
-    width: 15rem;
+    height: 20rem;
+    width: 20rem;
     opacity: 1;
     filter: blur(35px);    
     z-index: -1;
-    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    animation: animate 37.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
     pointer-events: none;
 }
 
@@ -214,6 +214,18 @@
 /* ======================
      RESPONSIVENESS
 ====================== */
+
+@media (min-width: 1280px) {
+    .hero-h1 {
+        font-size: 7rem;
+        line-height: 7rem;
+        max-width: 90rem;
+    }
+
+    .home-container {
+        padding: 7rem 20rem 1rem;
+    }
+}
 
 @media (max-width: 768px) {
     .home-container {

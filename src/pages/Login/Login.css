@@ -12,11 +12,15 @@
     border: none;
     padding: 0.6rem 1.5rem;
     font-weight: 800;
-    border-radius: 0.7rem;
+    border-radius: 100vw;
     cursor: pointer;
     z-index: 1;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
     margin: 0.6rem auto;
+}
+
+.login-button i {
+    margin: 0 0.5rem 0 0;
 }
 
 .login-button::before {
@@ -26,7 +30,7 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(75deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    background: linear-gradient(45deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
     border-radius: inherit;
     z-index: -1;
     mask: 
@@ -39,6 +43,25 @@
     -webkit-mask-composite: destination-out;
     padding: 2px;
     box-sizing: border-box;
+}
+
+.login-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, var(--accent-1-dark), var(--accent-1), var(--accent-2));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.login-button:hover::before {
+    opacity: 0;
+}
+
+.login-button:hover::after {
+    opacity: 1;
 }
 
 .login-bar {
@@ -63,10 +86,11 @@
     outline: none;
     border-radius: 100vw;
     color: var(--base-2);
+    font-weight: 500;
 }
   
 .login-input::placeholder {
-    color: #999999;
+    color: var(--text-3);
 }
 
 .login-card {
@@ -105,7 +129,7 @@
     align-items: center;
 }
 
-.signup-link{
+.signup-link {
     font-family: CabinetGrotesk-Variable, sans-serif;
     font-weight: 600;
     font-size: 1.25rem;
