@@ -110,7 +110,7 @@ if (!entries || entries.length === 0) {
 }
 
 return (
-  <div className="table-container">
+  <div className="table-box">
   <Table striped highlightOnHover withTableBorder withColumnBorders className="my-table">
   <thead>
     <tr>
