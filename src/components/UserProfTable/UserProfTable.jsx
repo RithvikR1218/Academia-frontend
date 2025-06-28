@@ -126,9 +126,9 @@ return (
   <tbody>
     {entries.map((entry) => (
       <tr key={entry._id}>
-        <td>{entry.professor?.name || '—'}</td>
-        <td>{entry.professor?.email || '—'}</td>
-        <td>
+        <td data-label="Name">{entry.professor?.name || '—'}</td>
+        <td data-label="Email">{entry.professor?.email || '—'}</td>
+        <td data-label="Website">
           {entry.professor?.personal_website ? (
             <a
               href={entry.professor.personal_website}
@@ -142,28 +142,28 @@ return (
             '—'
           )}
         </td>
-        <td>{entry.professor?.position || '—'}</td>
-        <td>
-          <Checkbox className="checkbox-cell"
+        <td data-label="Position">{entry.professor?.position || '—'}</td>
+        <td data-label="Contacted">
+          <Checkbox
+            className="checkbox-cell"
             checked={entry.contacted}
             onChange={() => handleCheckboxChange(entry, 'contacted')}
           />
         </td>
-        <td>
-          <Checkbox className="checkbox-cell"
+        <td data-label="Responded">
+          <Checkbox
+            className="checkbox-cell"
             checked={entry.responded}
             onChange={() => handleCheckboxChange(entry, 'responded')}
           />
         </td>
-        <td className="action-cell">
-          <Group spacing="xs">
-            <button
-              className="my-delete-button"
-              onClick={() => handleDelete(entry._id)}
-            >
-              Delete
-            </button>
-          </Group>
+        <td data-label="Actions" className="action-cell">
+          <button
+            className="my-delete-button"
+            onClick={() => handleDelete(entry._id)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     ))}

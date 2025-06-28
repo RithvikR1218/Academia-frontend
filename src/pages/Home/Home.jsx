@@ -9,10 +9,6 @@ export default function Home() {
         <div className="gradient-blob-3"></div>
         <p className="hero-p">For Research Driven Students</p>
         <h1 className="hero-h1">Discover the Best Professors Quickly</h1>
-        <div className="search-bar">
-            <input className="search-input" placeholder='Research Interest (e.g. AIML)'></input>
-            <button className="search-button"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-        </div>
         <div className="about-section">
             <p className="about-p">About Us</p>
             <h2 className="about-h2">Key Features</h2>

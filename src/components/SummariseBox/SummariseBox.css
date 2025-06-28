@@ -14,7 +14,7 @@
 .summary-content {
   position: relative;
   background-color: #1e1e1e;
-  border: 2px solid magenta;
+  border: 2px solid var(--accent-1);
   border-radius: 16px;
   padding: 50px 40px;
   width: 90%;
@@ -44,6 +44,6 @@
   background: none;
   border: none;
   font-size: 28px;
-  color: orangered;
+  color: var(--accent-2);
   cursor: pointer;
 }

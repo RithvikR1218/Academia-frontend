@@ -103,7 +103,7 @@ export default function SummaryOverlay({ fileName, onClose }) {
     <div className="summary-overlay">
       <div className="summary-content">
         <button className="summary-close-button" onClick={onClose}>
-          ❌
+          ✖️
         </button>
         <h2>
           Summary for <span style={{ fontWeight: 500 }}>{fileName}</span>
