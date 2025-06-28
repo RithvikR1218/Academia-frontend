@@ -9,6 +9,17 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.summarise-button{
+  background-color: transparent;       
+  color: #a2089a;                   
+  border: 2px solid #a2089a;             
+  padding: 0.6rem 1.5rem;
+  margin-left: 10px;
+  font-weight: 800;
+  border-radius: 0.3vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 .list-item {
   display: flex;
   justify-content: space-between;

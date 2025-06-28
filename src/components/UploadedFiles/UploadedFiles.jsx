@@ -4,12 +4,15 @@ import { List, Text, Loader, Modal, Button } from '@mantine/core';
 import axios from 'axios';
 import { notifications } from '@mantine/notifications';
 import './UploadedFiles.css';
+import SummariseBox from '../SummariseBox/SummariseBox';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const UploadedFilesList = ({ uploadedFiles }) => {
   const [opened, setOpened] = useState(false);
   const [file, setFile] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleDelete = async (filename) => {
     setLoading(true);
@@ -37,6 +40,11 @@ const UploadedFilesList = ({ uploadedFiles }) => {
     }
   };
 
+  const handleSummarise = (filename) => {
+    setShowSummary(true);
+    setSelectedFile(filename);
+    console.log('Summarising ',filename);
+  };
   const handleFileClick = async (filename) => {
     setLoading(true);
     const token = localStorage.getItem('token');
@@ -113,10 +121,26 @@ const UploadedFilesList = ({ uploadedFiles }) => {
           <i className="fas fa-trash-alt"></i>&nbsp;
             Delete
           </button>
+          <button
+            className="summarise-button"
+            onClick={() => handleSummarise(file)}
+          >
+          <i className="fa-solid fa-file"></i>&nbsp;
+            Summarise
+          </button>
         </List.Item>
       ))}
     </List>
     </div>
+    {showSummary && (
+  <SummariseBox
+    fileName={selectedFile}
+    onClose={() => {
+      setShowSummary(false);
+      setSelectedFile(null);
+    }}
+  />
+  )}
     </>
   );
 };

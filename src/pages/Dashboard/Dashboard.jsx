@@ -136,7 +136,7 @@ function Dashboard() {
       <div className='welcome-container'>
         <h2>Welcome, {user.displayName}</h2>
         <button onClick={handleLogout} className='logout-button' >
-          <i class="fas fa-sign-out"></i>&nbsp;
+          <i className="fas fa-sign-out"></i>&nbsp;
           Logout
         </button>
       </div>
