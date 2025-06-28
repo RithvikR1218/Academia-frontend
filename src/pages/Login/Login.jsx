@@ -74,9 +74,9 @@ export default function Login() {
     
     return (
         <div className="login-container">
-            <div className="gradient-blob-top"></div>
-            <div className="gradient-blob-bottom"></div>
-            <div className="gradient-blob-footer"></div>
+            <div className="gradient-blob-1"></div>
+            <div className="gradient-blob-2"></div>
+            <div className="gradient-blob-3"></div>
             <div className='login-card'>
                 <h2 className="hero-h1">Login</h2>
                 <div className="login-bar">

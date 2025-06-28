@@ -75,9 +75,9 @@ export default function SignUp() {
     
     return (
         <div className="signup-container">
-            <div className="gradient-blob-top"></div>
-            <div className="gradient-blob-bottom"></div>
-            <div className="gradient-blob-footer"></div>
+            <div className="gradient-blob-1"></div>
+            <div className="gradient-blob-2"></div>
+            <div className="gradient-blob-3"></div>
             <div className="signup-card">
                 <h2 className="hero-h1">Sign Up</h2>
                 <div className="signup-bar">
