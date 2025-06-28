@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-crypto/sha256-browser": "^5.2.0",
+    "@aws-sdk/protocol-http": "^3.374.0",
+    "@aws-sdk/signature-v4": "^3.374.0",
     "@mantine/core": "^8.0.2",
     "@mantine/hooks": "^8.1.1",
     "@mantine/notifications": "^8.1.1",
