@@ -4,7 +4,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { FileInput } from '@mantine/core';
 import UploadedFilesList from '../../components/UploadedFiles/UploadedFiles';
-import SummaryFilesList from '../../components/SummaryFiles/SummaryFiles';
+// import SummaryFilesList from '../../components/SummaryFiles/SummaryFiles';
 import UserProfTable from '../../components/UserProfTable/UserProfTable';
 import { notifications } from '@mantine/notifications';
 import './Dashboard.css';
@@ -137,7 +137,7 @@ function Dashboard() {
       <div className='welcome-container'>
         <h2>Welcome, {user.displayName}</h2>
         <button onClick={handleLogout} className='logout-button' >
-          <i class="fas fa-sign-out"></i>&nbsp;
+          <i className="fas fa-sign-out"></i>&nbsp;
           Logout
         </button>
       </div>    
@@ -162,10 +162,10 @@ function Dashboard() {
                 </Button>
             </div>  
         </div>
-        <div className="dash-summary">
+        {/* <div className="dash-summary">
             <h2>Summary Files</h2>
             <SummaryFilesList uploadedFiles={user.uploadedFiles} />
-        </div>
+        </div> */}
       </div>
       <h2 className="heading-title">My Professors</h2>
       <UserProfTable userId={user._id}/>

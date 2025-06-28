@@ -15,6 +15,24 @@
     color: var(--base-1);
 }
 
+.summarise-button{
+  background-color: transparent;       
+  color: var(--accent-2);                   
+  border: 2px solid var(--accent-2);             
+  padding: 0.6rem 1.5rem;
+  font-weight: 800;
+  border-radius: 100vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.summarise-button:hover {
+  background-color: var(--accent-2);       
+  color: var(--base-1);
+}
+
 .list-item {
   display: flex;
   justify-content: space-between;
