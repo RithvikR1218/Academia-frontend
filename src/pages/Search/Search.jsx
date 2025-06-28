@@ -32,9 +32,11 @@ export default function Search() {
 
   return (
     <div className="search-container">
-        <div className="gradient-blob-top"></div>
-        <div className="gradient-blob-bottom"></div>
-        <div className="gradient-blob-footer"></div>
+        <div className="gradient-blob-1"></div>
+        <div className="gradient-blob-2"></div>
+        <div className="gradient-blob-3"></div>
+        <div className="gradient-blob-4"></div>
+        <div className="gradient-blob-5"></div>
         <p className="search-p">Fuzzy Search for Professors</p>
         <h1 className="search-h1">Search Tool</h1>
         <div className="search-flex">

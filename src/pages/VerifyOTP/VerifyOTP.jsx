@@ -102,9 +102,9 @@ export default function VerifyOTP() {
 
   return (
     <div className="home-container">
-        <div className="gradient-blob-top"></div>
-        <div className="gradient-blob-bottom"></div>
-        <div className="gradient-blob-footer"></div>
+        <div className="gradient-blob-1"></div>
+        <div className="gradient-blob-2"></div>
+        <div className="gradient-blob-3"></div>
         <div className="login-card">
             <h2 className="hero-h1">Enter OTP</h2>
             <p className="otp-instructions">Verify the 6-digit code to your email</p>

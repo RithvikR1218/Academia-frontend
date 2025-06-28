@@ -140,7 +140,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
   return (
     <>  
         <div className="table-div">
-            <table className='table-container'>
+            <table className='prof-table table-container'>
                 <thead>
                 <tr>
                     <th>Name<i class="fa-solid fa-sort"></i></th>
