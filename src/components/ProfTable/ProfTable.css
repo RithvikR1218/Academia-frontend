@@ -17,6 +17,18 @@
     margin: 0 0.75rem 0 0;
     font-size: 1.25rem;
 }
+#prof-name-link {
+  color: #cfcfcf;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+#prof-name-link:hover {
+  color: #1d6fa5;
+  border-bottom: 1px solid #1d6fa5;
+}
 
 
 /* ==================
