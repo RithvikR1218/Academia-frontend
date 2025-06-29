@@ -8,13 +8,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 6rem 1rem 2rem 1rem;
   z-index: 1000;
 }
 
 .summary-content {
   position: relative;
   background-color: #1e1e1e;
-  border: 2px solid var(--accent-1);
+  border: 2px solid;
   border-radius: 16px;
   padding: 50px 40px;
   width: 90%;
@@ -23,6 +24,7 @@
   text-align: center;
   overflow-y: auto;
   max-height: 90vh;
+  z-index: 1000;
 }
 
 .summary-content h2 {
