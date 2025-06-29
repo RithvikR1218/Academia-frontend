@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" },
+    { "source": "/api/(.*)", "destination": "http://localhost:8000/api/$1" }
+  ],
+  "cleanUrls": false
+}
