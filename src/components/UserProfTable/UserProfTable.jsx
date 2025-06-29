@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Table, Loader, Button, Checkbox, Group, Text } from '@mantine/core';
 import { getUserProfEntries, deleteUserProfEntry, updateUserProfEntry, getAllProfessorsByIds } from '../../api/proff_search'; 
 import './UserProfTable.css';
+import { notifications } from '@mantine/notifications';
+
 export default function UserProfTable({ userId }) {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,6 +37,11 @@ export default function UserProfTable({ userId }) {
   const handleDelete = async (entryId) => {
     try {
       await deleteUserProfEntry(entryId);
+      notifications.show({
+              title: 'Removed!',
+              message: 'Deleted successfully',
+              color: 'orange',
+            });
       setEntries((prev) => prev.filter((e) => e._id !== entryId));
       console.log("🗑️ Deleted entry:", entryId);
     } catch (error) {
@@ -60,7 +67,7 @@ export default function UserProfTable({ userId }) {
       responded: updatedEntry.responded,
     });
 
-    console.log("✅ Updated entry:", entry._id);
+    console.log("✅ Updated entry:", entry);
   } catch (error) {
     console.error("❌ Update failed:", error);
   }
@@ -82,6 +89,24 @@ export default function UserProfTable({ userId }) {
         '—'
       )}
     </td>
+    <td>
+  {entry.professor?.collegeId?.name ? (
+    entry.professor?.college_website ? (
+      <a
+        href={entry.professor.college_website}
+        target="_blank"
+        rel="noopener noreferrer"
+        id="college-link"
+      >
+        {entry.professor.collegeId.name}
+      </a>
+    ) : (
+      entry.professor.collegeId.name
+    )
+  ) : (
+    '—'
+  )}
+</td>
     <td>{entry.professor?.position || '—'}</td>
     <td>
       <Checkbox
@@ -117,6 +142,7 @@ return (
       <th>Name</th>
       <th>Email</th>
       <th>Website</th>
+      <th>College</th>
       <th>Position</th>
       <th>Contacted</th>
       <th>Responded</th>
@@ -142,6 +168,25 @@ return (
             '—'
           )}
         </td>
+        <td>
+        {entry.professor?.collegeId?.name ? (
+        entry.professor?.college_website ? (
+        <a
+              href={entry.professor.college_website}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="college-link"
+        >
+        {entry.professor.collegeId.name}
+      </a>
+    ) : (
+      entry.professor.collegeId.name
+    )
+  ) : (
+    '—'
+  )}
+</td>
+
         <td data-label="Position">{entry.professor?.position || '—'}</td>
         <td data-label="Contacted">
           <Checkbox

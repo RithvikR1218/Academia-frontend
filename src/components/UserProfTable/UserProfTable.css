@@ -79,6 +79,18 @@
   transform: scaleX(1);
 }
 
+#college-link {
+  color: #eeeeee;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+#college-link:hover {
+  color: #1d6fa5;
+  border-bottom: 1px solid #1d6fa5;
+}
 
 .checkbox-cell {
   display: flex;
