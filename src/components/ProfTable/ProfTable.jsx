@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Table, Loader, Pagination, Button } from '@mantine/core';
-import { getProfessors, insertBatchEntry } from '../../api/proff_search';
+import { Table, Loader, Pagination, Button, Checkbox } from '@mantine/core';
+import { getProfessors, insertBatchEntry, getUserProfEntries,getUserProfEntryByProfessorId,deleteUserProfEntry} from '../../api/proff_search';
 import { notifications } from '@mantine/notifications';
 import './ProfTable.css';
 
@@ -9,6 +9,9 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [selectedProfIds, setSelectedProfIds] = useState([]);
+  const [toggle,setToggle] = useState(false);
+
   const perPage = 10;
   useEffect(() => {
     console.log('👀 Props received:', { collegeId, departmentId, researchInterests});
@@ -25,6 +28,72 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [collegeId, departmentId, researchInterests, page]);
+
+  useEffect(() => {
+  const fetchSelectedProfs = async () => {
+    try {
+      const entries = await getUserProfEntries();
+      const ids = entries.map(entry => entry.professorId);
+      setSelectedProfIds(ids);
+    } catch (err) {
+      console.error("❌ Failed to fetch user's selected profs:", err);
+    }
+  };
+
+  fetchSelectedProfs();
+}, [toggle]);
+
+
+  const handleCheckboxClick = async (prof) => {
+  const alreadySelected = selectedProfIds.includes(prof._id);
+
+  if (!alreadySelected) {
+    try {
+      await insertBatchEntry([prof._id]); // Assuming this API expects an array
+      setSelectedProfIds((prev) => [...prev, prof._id]);
+      notifications.show({
+        title: 'Saved!',
+        message: `Professor ${prof.name} saved to dashboard.`,
+        color: 'green',
+      });
+    } catch (err) {
+      console.error('❌ Failed to save professor:', err);
+      notifications.show({
+        title: 'Error!',
+        message: `Failed to save ${prof.name}.`,
+        color: 'red',
+      });
+    }
+  } else {
+    try {
+      // Get the entry with this professor's ID
+      const entries = await getUserProfEntryByProfessorId(prof._id);
+      const entryId = entries?.[0]?._id;
+
+      if (!entryId) throw new Error('Entry ID not found');
+
+      // Delete the entry
+      await deleteUserProfEntry(entryId);
+
+      // Update selectedProfIds by removing this prof._id
+      setSelectedProfIds((prev) => prev.filter((id) => id !== prof._id));
+
+      notifications.show({
+        title: 'Removed!',
+        message: `Professor ${prof.name} removed from dashboard.`,
+        color: 'orange',
+      });
+    } catch (err) {
+      console.error('❌ Failed to remove professor:', err);
+      notifications.show({
+        title: 'Error!',
+        message: `Failed to remove ${prof.name}.`,
+        color: 'red',
+      });
+    }
+  }
+};
+
 
   const downloadCSV = async () => {
   const allProfessors = [];
@@ -117,6 +186,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
         message: 'Saved in Dashboard successfully',
         color: 'green',
       });
+      setToggle(!toggle);
   }
   catch(error){
     console.error("Failed to save professors:", error);
@@ -127,9 +197,23 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
 
   const rows = professors.map((prof) => (
     <tr key={prof._id}>
-        <td data-label="Name">{prof.name}</td>
+        <td>
+        <Checkbox
+        onChange={() => handleCheckboxClick(prof)}
+        checked={selectedProfIds.includes(prof._id)}
+        />
+        </td>
+        <td data-label="Name">
+        {prof.personal_website ? (
+          <a  id="prof-name-link" href={prof.personal_website} target="_blank" rel="noopener noreferrer">{prof.name}</a>) 
+          : (prof.name)}
+        </td>
         <td data-label="Email">{prof.email}</td>
-        <td data-label="College">{prof.collegeId?.name || 'N/A'}</td>
+        <td data-label="College">
+        {prof.college_website ? (
+          <a  id="prof-name-link" href={prof.college_website} target="_blank" rel="noopener noreferrer">{prof.collegeId?.name || 'N/A'}</a>) 
+          : (prof.collegeId?.name)}
+        </td>
         <td data-label="Department">{prof.departmentId?.name || 'N/A'}</td>
         <td data-label="Position">{prof.position}</td>
         <td data-label="Research Interests" className='research-td'>{prof.researchInterests?.join(', ')}</td>
@@ -143,6 +227,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
             <table className='prof-table table-container'>
                 <thead>
                 <tr>
+                    <th>Save in dashboard<i class="fa-solid fa-sort"></i></th>
                     <th>Name<i class="fa-solid fa-sort"></i></th>
                     <th>Email<i class="fa-solid fa-sort"></i></th>
                     <th>College<i class="fa-solid fa-sort"></i></th>
@@ -172,7 +257,7 @@ export default function ProfTable({ collegeId, departmentId, researchInterests})
 
             <Button onClick={saveInUserProfTable} className='save-btn' disabled={professors.length <= 0} mb="md">
                 <i class="fa-solid fa-bookmark"></i>
-                <div>Save Professors to Dashboard</div>
+                <div>Save all Professors to Dashboard</div>
             </Button>
         </div>
     </>

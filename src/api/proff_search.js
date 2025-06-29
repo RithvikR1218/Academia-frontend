@@ -89,6 +89,19 @@ export async function getAllProfessorsByIds(professorIds){
   return res.data;
 }
 
+export async function getUserProfEntryByProfessorId(professorId){
+  const token = localStorage.getItem('token');
+  const res = await axios.get(`${baseURL}/api/user-Prof/professor/${professorId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}
+
 export async function insertBatchEntry(data) {
   const token = localStorage.getItem('token');
   const res = await axios.post(`${baseURL}/api/user-Prof/batch`, 
