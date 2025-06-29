@@ -21,6 +21,7 @@ export default function Search() {
     researchInterests: '',
   });
 
+  
   const handleSearch = () => {
     setFilters({
       collegeId: selectedInstitute?.value || null,
@@ -28,6 +29,12 @@ export default function Search() {
       researchInterests: researchInterest.trim(),
     });
     setShowTable(true);
+  };
+
+  const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+          handleSearch();
+      }
   };
 
   return (
@@ -60,6 +67,11 @@ export default function Search() {
                 value={researchInterest}
                 className="search-interest"
                 onChange={(e) => setResearchInterest(e.currentTarget.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleKeyDown(e);
+                  }
+                }}
                 mt="md"
             />
 
