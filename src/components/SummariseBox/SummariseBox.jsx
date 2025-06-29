@@ -48,10 +48,10 @@ export default function SummaryOverlay({ fileName, onClose }) {
     <div className="summary-overlay">
       <div className="summary-content">
         <button className="summary-close-button" onClick={onClose}>
-          ✖️
+        <i class="fas fa-window-close"></i>
         </button>
         <h2>
-          Summary for <span style={{ fontWeight: 500 }}>{fileName}</span>
+          Summary for <span>{fileName}</span>
         </h2>
         {loading ? (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>

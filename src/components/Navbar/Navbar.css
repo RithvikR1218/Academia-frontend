@@ -1,6 +1,6 @@
 .nav-container {
     height: 64px;
-    background-color: transparent;
+    background: var(--base-2);
     color: var(--text-1);
     position: fixed;
     top: 0;
@@ -12,7 +12,6 @@
     justify-content: space-between;
     z-index: 999;
 }
-
   
 .logo-link {
     color: var(--text-1);
@@ -130,6 +129,9 @@
         display: flex;
     }
     
+    .nav-container {
+        background: var(--base-2);
+    }
     .nav-container.open {
         background: var(--base-2);
     }

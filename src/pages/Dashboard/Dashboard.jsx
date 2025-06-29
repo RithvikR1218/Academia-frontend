@@ -136,11 +136,11 @@ function Dashboard() {
 
   return (
     <div className='dashboard-container'>
-      <div className="gradient-blob-top"></div>
-      <div className="gradient-blob-bottom"></div>
-      <div className="gradient-blob-footer"></div>
+      <div className="gradient-blob-1"></div>
+      <div className="gradient-blob-2"></div>
+      <div className="gradient-blob-3"></div>
       <div className='welcome-container'>
-        <h2>Welcome, {user.displayName}</h2>
+        <h2 className="heading-title">Welcome, {user.displayName}</h2>
         <button onClick={handleLogout} className='logout-button' >
           <i className="fas fa-sign-out"></i>&nbsp;
           Logout
@@ -148,11 +148,11 @@ function Dashboard() {
       </div>    
       <div>
         <div className='dash-upload'>
-            <h2>Uploaded Files</h2>
+            <h2 className="heading-title">Uploaded Files</h2>
             <UploadedFilesList uploadedFiles={user.uploadedFiles} />
             <div className='upload-container'>
                 <label htmlFor="customFileInput" className="logout-button">
-                  {file ? file.name : 'Add File'}
+                  {file ? file.name : 'Click to Add File'}
                 </label>
                 <input
                   type="file"
@@ -164,7 +164,6 @@ function Dashboard() {
                 <button 
                 onClick={handleUpload} 
                 color="blue"
-                disabled={uploading || !file}
                 loading={uploading}
                 className="logout-button"
                 >

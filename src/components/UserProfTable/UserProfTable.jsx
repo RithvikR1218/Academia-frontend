@@ -207,7 +207,7 @@ return (
             className="my-delete-button"
             onClick={() => handleDelete(entry._id)}
           >
-            Delete
+          <i className="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>

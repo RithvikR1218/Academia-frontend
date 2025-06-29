@@ -58,7 +58,8 @@
 }
 
 .list-container {
-    width: 100%;
+    width: 40%;
+    min-width: 350px;
     margin: 2rem auto 1rem;
     padding: 1rem 1.5rem;
     background-color: var(--base-2);
@@ -69,3 +70,17 @@
   display:flex;
   flex-direction: column;
 }
+
+
+@media (max-width: 420px) {
+  .list-container {
+    min-width: 300px;
+  }
+  .summarise-button{
+    margin-left: 0;
+  }
+  .delete-button{
+    margin-bottom: 0.5rem;
+  }
+}
+
