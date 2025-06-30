@@ -1,68 +1,404 @@
+/* Global fonts */
+@import url('./fonts/css/satoshi.css');
+@import url('./fonts/css/cabinet-grotesk.css');
+
+/* Global colours */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --base-1: #1e1e1e;
+    --base-2: #272727;
+    --base-3: #323232;
+    --text-1: #fffcf9;
+    --text-2: #cccccc;
+    --text-3: #999999;
+    --accent-1: #7e6bfd;
+    --accent-1-dark: #5b3fd8;
+    --accent-2: #ffd896;
+    --accent-2-dark: #f1c16d;
+    --accent-3: #FF5C57;
+    --accent-3-dark: #DC143C;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* Root HTML and body */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
 }
+
+/* React root element */
+#root {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--base-1);
+    color: var(--text-1);
+    font-family: Satoshi-Variable, sans-serif;
+    text-align: center;
+}
+
+/* Main App container */
+.App {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* =====================
+     DEFAULT STYLES
+===================== */
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 800;
+    font-size: 6rem;
+    line-height: 6rem;
+}
+
+h2 {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+
+h3 {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-2);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    background-color: var(--accent-1);
+    color: var(--text-1);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+
+/* ====================
+     TABLE STYLES
+==================== */
+
+.table-div {
+    background-color: var(--base-2);
+    background: linear-gradient(180deg, var(--base-2), var(--base-1));
+    border-radius: 2.5vw;
+    max-width: 55rem;
+    margin: 0 auto 2rem;
+    padding: 0.5rem 1rem;
+}
+
+.table-container {
+    color: var(--text-2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 55rem;
+}
+  
+.table-container th,
+.table-container td {
+    border-bottom: 1px solid var(--text-1);
+    text-align: left;
+    padding: 0.6rem;
+    min-width: 90px;
+}
+
+.table-container th {
+    font-family: CabinetGrotesk-Variable, sans-serif;
+    color: var(--text-1);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.table-container tr:last-child td {
+    border-bottom: none;
+}
+
+.table-container tbody tr:hover {
+    background-color: var(--base-3);
+    cursor: pointer;
+}
+
+.table-container thead i {
+    color: var(--accent-2);
+    font-size: 0.9rem;
+    margin: 0 0 0 0.4rem;
+    cursor: pointer;
+}
+  
+/* Responsiveness */
+@media (max-width: 992px) {
+    .table-div {
+        margin: 1.5rem auto 2rem;
+        border: none;
+        padding: 1rem 1rem;
+        background: transparent;
+    }
+
+    .table-container thead {
+        display: none;
+    }
+  
+    .table-container tr {
+        display: block;
+        margin: 0 auto 1.5rem;
+        border-radius: 2.5vw;
+        background-color: var(--base-2);
+        max-width: 30rem;
+        overflow: hidden;
+    }
+  
+    .table-container td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      gap: 0.35rem;
+      border: none;
+      text-align: right;
+    }
+
+    .table-container td::before {
+      content: attr(data-label);
+      font-family: CabinetGrotesk-Variable, sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-basis: 50%;
+      color: var(--text-3);
+      text-align: left;
+    }
+
+    .table-container tr:last-child {
+        margin: 0 auto;
+    }
+}
+
+
+/* =======================
+     MANTINE OVERRIDES
+======================= */
+
+/* Dropdown Select*/
+.mantine-Select-input {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    height: 100% !important;
+    margin: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    color: var(--base-2) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+}
+
+.mantine-Select-input::placeholder {
+    color: var(--text-3) !important;
+}
+
+.mantine-Select-dropdown {
+    background: var(--text-1) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    color: var(--base-2) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    padding: 0.3rem 0 0.3rem 0.3rem !important;
+}
+
+.mantine-Select-option {
+  font-size: 0.85rem !important;
+}
+
+.mantine-Select-option:hover,
+.mantine-Select-option:focus {
+  background: var(--text-2) !important;
+  color: var(--base-2) !important;
+  border-radius: 0 !important;
+}
+
+/* Text Input */
+.mantine-TextInput-input {
+    border: none !important;
+    background: transparent !important;
+    height: 100% !important;
+    margin: 0 !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    color: var(--base-2) !important;
+}
+
+.mantine-TextInput-input::placeholder {
+    color: var(--text-3) !important;
+}
+
+/* Button */
+.mantine-Button-root {
+    background-color: var(--accent-1) !important;
+    border-radius: 100vw !important;
+    color: var(--text-1) !important;
+    font-family: Satoshi-Variable, sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    margin: auto !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.mantine-Button-root:hover {
+    background-color: var(--accent-1-dark) !important;
+}
+
+/* Pagination */
+.mantine-Pagination-root {
+    --pagination-active-bg: var(--accent-2) !important;
+    --pagination-active-color: var(--base-2) !important;
+    font-family: Satoshi-Variable, serif !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+}
+
+.mantine-Pagination-control {
+    color: var(--base-2) !important;
+    height: 36px !important;
+    width: 36px !important;
+    margin: 0 !important;
+    font-size: 1rem !important;
+}
+
+.mantine-Pagination-control:first-child, .mantine-Pagination-control:last-child {
+    color: var(--base-2) !important;
+    border: 0 !important;
+    border-radius: 100vw !important;
+    background-color: var(--accent-2) !important;
+    height: 24px !important;
+    margin: 0.2rem !important;
+}
+
+.mantine-Pagination-control:first-child svg, .mantine-Pagination-control:last-child svg {
+    height: 12px !important;
+}
+
+
+/* ======================
+     GRADIENT BLOB
+====================== */
+
+.gradient-blob-1 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(90deg, var(--accent-2-dark), var(--accent-1-dark));
+    top: 0%;
+    left: 0%;
+    height: 15rem;
+    width: 15rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-2 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(270deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 50%;
+    right: 0%;
+    height: 20rem;
+    width: 20rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-3 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 0%;
+    left: 15%;
+    height: 20rem;
+    width: 20rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 37.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-4 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    top: 25%;
+    left: 25%;
+    height: 10rem;
+    width: 10rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 17.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+.gradient-blob-5 {
+    position: absolute;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    background: var(--accent-1-dark);
+    background: linear-gradient(180deg, var(--accent-2-dark), var(--accent-1-dark));
+    bottom: 25%;
+    right: 20%;
+    height: 10rem;
+    width: 10rem;
+    opacity: 1;
+    filter: blur(35px);    
+    z-index: -1;
+    animation: animate 17.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    pointer-events: none;
+}
+
+@keyframes animate {
+    0% {
+      transform: translate(40%, -25%);
+      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    }
+    50% {
+      transform: translate(0%, 13%);
+      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+      rotate: 41deg;
+      scale: 1.15;
+    }
+    100% {
+      transform: translate(-45%, 39%);
+      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+      rotate: -60deg;
+      scale: 1.05;
+    }
 }

@@ -1,0 +1,51 @@
+.summary-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem 2rem 1rem;
+  z-index: 1000;
+}
+
+.summary-content {
+  position: relative;
+  background-color: #1e1e1e;
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 50px 40px;
+  width: 90%;
+  max-width: 1000px;
+  color: #fff;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 90vh;
+  z-index: 1000;
+}
+
+.summary-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  word-break: break-word;
+}
+
+.summary-content p {
+  font-size: 18px;
+  color: #ccc;
+}
+
+.summary-close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--accent-2);
+  cursor: pointer;
+}

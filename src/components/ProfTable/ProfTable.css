@@ -1,0 +1,89 @@
+.table-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1.5rem;
+    column-gap: 0.15rem;
+    margin: 1.5rem auto;
+    max-width: 60rem;
+}
+
+.csv-btn, .save-btn {
+    height: 3rem !important;
+}
+
+.csv-btn i, .save-btn i {
+    margin: 0 0.75rem 0 0;
+    font-size: 1.25rem;
+}
+#prof-name-link {
+  color: #cfcfcf;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+#prof-name-link:hover {
+  color: #1d6fa5;
+  border-bottom: 1px solid #1d6fa5;
+}
+
+
+/* ==================
+     MAIN TABLE
+================== */
+  
+.prof-table th:nth-child(4),
+.prof-table td:nth-child(4) {
+    min-width: 125px;
+}
+
+.research-td {
+    font-family: Satoshi-VariableItalic;
+    font-size: 0.7rem;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+
+/* =====================
+     RESPONSIVENESS
+===================== */
+
+@media (max-width: 1024px) {
+    .csv-btn {
+        max-width: 12.8rem !important;
+    }
+
+    .save-btn {
+        max-width: 11.6rem !important;
+    }
+    
+    .csv-btn i, .save-btn i {
+        margin: 0 0.75rem 0 0;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .csv-btn {
+        max-width: 12.6rem !important;
+        order: 1;
+    }
+
+    .save-btn {
+        max-width: 11.4rem !important;
+        order: 2;
+    }
+    
+    .csv-btn i, .save-btn i {
+        margin: 0 0.75rem 0 0;
+        font-size: 1rem;
+    }
+
+    .page-btn {
+        order: 3;
+    }
+}
