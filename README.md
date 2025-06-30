@@ -1,12 +1,60 @@
-# React + Vite
+# Academia Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Academia is a platform designed to streamline the process of discovering and connecting with professors worldwide for research opportunities. The frontend offers an intuitive and responsive user interface that enables users to filter, save, and contact professors based on their research interests.
 
-Currently, two official plugins are available:
+## 📂 Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+/Academia-frontend
+├── src/           
+│  ├── assets/
+│  ├── fonts/
+│  ├── api
+│  │   ├── proff_search.js
+│  │   └── synonyms.js
+│  ├── components
+│  │   ├── College.jsx
+│  │   ├── Department.jsx
+│  │   ├── Footer/
+│  │   ├── Navbar/
+│  │   ├── ProfTable/
+│  │   ├── SummariseBox/
+│  │   ├── SummaryFiles/
+│  │   ├── UploadedFiles/
+│  │   └── UserProfTable/
+│  ├── pages
+│  │   ├── Admin/
+│  │   ├── Dashboard/
+│  │   ├── Home/
+│  │   ├── Login/
+│  │   ├── Search/
+│  │   ├── SignUp/
+│  │   ├── VerifyOTP/
+│  ├── App.css
+│  ├── App.jsx
+│  ├── index.css
+│  └── main.jsx   
+├── .env                     
+├── .gitignore               
+├── package.json
+├── index.html           
+└── README.md 
+```
 
-## Expanding the ESLint configuration
+## 📦 Local Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Install the node modules
+
+`npm install`
+
+### Create .env file
+
+`cp .env.example .env`
+
+### Start the Server
+
+`npm run dev`
+
+## 🔗 Link to Backend Repository
+
+[Academia Backend Repository](https://github.com/RithvikR1218/Academia-backend)
