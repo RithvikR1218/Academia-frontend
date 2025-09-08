@@ -17,7 +17,9 @@ export default function Navbar() {
 
   return (
     <nav className={`nav-container ${menuOpen ? 'open' : ''} ${isHome ? 'home' : ''}`}>
-      <Link to="/" className='logo-link' onClick={() => setMenuOpen(false)}>Academia</Link>
+      <Link to="/" className="logo-link" onClick={() => setMenuOpen(false)}>
+        Academia
+      </Link>
 
       <input type="checkbox" id="menu-toggle" className="menu-toggle" onClick={toggleMenu} />
       <label htmlFor="menu-toggle" className="hamburger">
@@ -29,19 +31,28 @@ export default function Navbar() {
       <div className="nav-links">
         {!isAuthenticated && (
           <>
-            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              Login
+            </Link>
             <span className="dot">•</span>
           </>
         )}
-        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+          Dashboard
+        </Link>
         <span className="dot">•</span>
-        <Link to="/search" onClick={() => setMenuOpen(false)}>Search</Link>
+        <Link to="/search" onClick={() => setMenuOpen(false)}>
+          Search
+        </Link>
       </div>
 
-      <div className="github-button" onClick={() => {
-        setMenuOpen(false);
-        window.open('https://github.com/RithvikR1218/Academia-backend/', '_blank');
-      }}>
+      <div
+        className="github-button"
+        onClick={() => {
+          setMenuOpen(false);
+          window.open('https://github.com/RithvikR1218/Academia-backend/', '_blank');
+        }}
+      >
         <span>Our Github</span>
         <i class="fa-brands fa-github"></i>
       </div>

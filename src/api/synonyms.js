@@ -18,6 +18,6 @@ export async function deleteSynonym(id) {
 }
 
 export async function updateSynonym(id, data) {
-    const res = await axios.put(`${baseURL}/api/synonyms/${id}`, data);
-    return res.data;
-  }  
+  const res = await axios.put(`${baseURL}/api/synonyms/${id}`, data);
+  return res.data;
+}

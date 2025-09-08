@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "prepare": "husky install",
-    "format": "prettier --check ."
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@aws-crypto/sha256-browser": "^5.2.0",

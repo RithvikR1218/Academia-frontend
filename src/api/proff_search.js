@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
-
 
 export async function getColleges() {
   const res = await axios.get(`${baseURL}/api/colleges`);
@@ -17,7 +16,13 @@ export async function getCollegeDepartments(id) {
   return res.data;
 }
 
-export async function getProfessors({ collegeId, departmentId, researchInterests, page, per_page } = {}) {
+export async function getProfessors({
+  collegeId,
+  departmentId,
+  researchInterests,
+  page,
+  per_page,
+} = {}) {
   const params = {};
 
   if (collegeId) params.collegeId = collegeId;
@@ -45,75 +50,62 @@ export async function deleteProfessor(id) {
   return res.data;
 }
 
-export async function getUserProfEntries(){
+export async function getUserProfEntries() {
   const token = localStorage.getItem('token');
-    const res = await axios.get(`${baseURL}/api/user-Prof/user/batch`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await axios.get(`${baseURL}/api/user-Prof/user/batch`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
   return res.data;
 }
 
-export async function deleteUserProfEntry(id){
+export async function deleteUserProfEntry(id) {
   const token = localStorage.getItem('token');
-  const res = await axios.delete(`${baseURL}/api/user-Prof/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await axios.delete(`${baseURL}/api/user-Prof/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
   return res.data;
 }
 
-export async function updateUserProfEntry(id,data){
+export async function updateUserProfEntry(id, data) {
   const token = localStorage.getItem('token');
-  const res = await axios.put(`${baseURL}/api/user-Prof/${id}`,data,
-  {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await axios.put(`${baseURL}/api/user-Prof/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
   return res.data;
 }
 
-export async function getAllProfessorsByIds(professorIds){
-  const res = await axios.post(`${baseURL}/api/professors/batch/`,professorIds);
+export async function getAllProfessorsByIds(professorIds) {
+  const res = await axios.post(`${baseURL}/api/professors/batch/`, professorIds);
   return res.data;
 }
 
-export async function getUserProfEntryByProfessorId(professorId){
+export async function getUserProfEntryByProfessorId(professorId) {
   const token = localStorage.getItem('token');
-  const res = await axios.get(`${baseURL}/api/user-Prof/professor/${professorId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await axios.get(`${baseURL}/api/user-Prof/professor/${professorId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
   return res.data;
 }
 
 export async function insertBatchEntry(data) {
   const token = localStorage.getItem('token');
-  const res = await axios.post(`${baseURL}/api/user-Prof/batch`, 
-    data, 
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await axios.post(`${baseURL}/api/user-Prof/batch`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
   return res.data;
 }
-
-  
