@@ -11,6 +11,7 @@ import VerifyOTP from './pages/VerifyOTP/VerifyOTP';
 import Dashboard from './pages/Dashboard/Dashboard';
 // import AdminPanel from './pages/Admin/AdminPanel';
 // import SynonymAdminPanel from './pages/Admin/SynonymAdminPanel';
+//Testing husky
 import './App.css';
 
 function App() {
