@@ -6,7 +6,7 @@ Academia is a platform designed to streamline the process of discovering and con
 
 ```
 /Academia-frontend
-├── src/           
+├── src/
 │  ├── assets/
 │  ├── fonts/
 │  ├── api
@@ -33,12 +33,12 @@ Academia is a platform designed to streamline the process of discovering and con
 │  ├── App.css
 │  ├── App.jsx
 │  ├── index.css
-│  └── main.jsx   
-├── .env                     
-├── .gitignore               
+│  └── main.jsx
+├── .env
+├── .gitignore
 ├── package.json
-├── index.html           
-└── README.md 
+├── index.html
+└── README.md
 ```
 
 ## 📦 Local Setup

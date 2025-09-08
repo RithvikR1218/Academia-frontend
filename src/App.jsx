@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Routes, Route, Link, Router } from 'react-router-dom';
 import { Loader } from '@mantine/core';
 import Navbar from './components/Navbar/Navbar';
@@ -15,7 +15,7 @@ import './App.css';
 
 function App() {
   return (
-      <div className="app-container">
+    <div className="app-container">
       <Suspense fallback={<Loader />}>
         <Navbar />
         <main className="content-wrapper">
