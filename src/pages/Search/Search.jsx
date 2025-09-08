@@ -6,7 +6,7 @@ import ProfTable from '../../components/ProfTable/ProfTable';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
-import "./Search.css"
+import './Search.css';
 
 export default function Search() {
   const [selectedInstitute, setSelectedInstitute] = useState(null);
@@ -21,7 +21,6 @@ export default function Search() {
     researchInterests: '',
   });
 
-  
   const handleSearch = () => {
     setFilters({
       collegeId: selectedInstitute?.value || null,
@@ -32,54 +31,54 @@ export default function Search() {
   };
 
   const handleKeyDown = (e) => {
-      if (e.key === 'Enter') {
-          handleSearch();
-      }
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   return (
     <div className="search-container">
-        <div className="gradient-blob-1"></div>
-        <div className="gradient-blob-2"></div>
-        <div className="gradient-blob-3"></div>
-        <div className="gradient-blob-4"></div>
-        <div className="gradient-blob-5"></div>
-        <p className="search-p">Fuzzy Search for Professors</p>
-        <h1 className="search-h1">Search Tool</h1>
-        <div className="search-flex">
-            <College
-                value={selectedInstitute?.value || null}
-                className="search-college"
-                onChange={(option) => {
-                setSelectedInstitute(option);
-                setSelectedDepartment(null);
-                }}
-            />
+      <div className="gradient-blob-1"></div>
+      <div className="gradient-blob-2"></div>
+      <div className="gradient-blob-3"></div>
+      <div className="gradient-blob-4"></div>
+      <div className="gradient-blob-5"></div>
+      <p className="search-p">Fuzzy Search for Professors</p>
+      <h1 className="search-h1">Search Tool</h1>
+      <div className="search-flex">
+        <College
+          value={selectedInstitute?.value || null}
+          className="search-college"
+          onChange={(option) => {
+            setSelectedInstitute(option);
+            setSelectedDepartment(null);
+          }}
+        />
 
-            <Department
-                value={selectedInstitute?.value}
-                className="search-dept"
-                onChange={(option) => setSelectedDepartment(option)}
-            />
+        <Department
+          value={selectedInstitute?.value}
+          className="search-dept"
+          onChange={(option) => setSelectedDepartment(option)}
+        />
 
-            <TextInput
-                placeholder="Research Interest (e.g. AIML)"
-                value={researchInterest}
-                className="search-interest"
-                onChange={(e) => setResearchInterest(e.currentTarget.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleKeyDown(e);
-                  }
-                }}
-                mt="md"
-            />
+        <TextInput
+          placeholder="Research Interest (e.g. AIML)"
+          value={researchInterest}
+          className="search-interest"
+          onChange={(e) => setResearchInterest(e.currentTarget.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleKeyDown(e);
+            }
+          }}
+          mt="md"
+        />
 
-            <Button className="search-btn" onClick={handleSearch} mt="md">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                Search
-            </Button>
-        </div>
+        <Button className="search-btn" onClick={handleSearch} mt="md">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Search
+        </Button>
+      </div>
 
       {showTable && (
         <ProfTable

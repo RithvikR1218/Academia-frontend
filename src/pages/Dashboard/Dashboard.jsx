@@ -18,32 +18,32 @@ function Dashboard() {
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    localStorage.removeItem('email'); 
+    localStorage.removeItem('email');
     const urlParams = new URLSearchParams(window.location.search);
     const tokenFromUrl = urlParams.get('token');
-  
+
     if (tokenFromUrl) {
       localStorage.setItem('token', tokenFromUrl);
       navigate('/dashboard', { replace: true });
     }
-  
+
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
-      navigate('/login')
+      navigate('/login');
       return;
     }
-  
+
     let decoded;
     try {
       decoded = jwtDecode(token);
     } catch (err) {
       console.error(`Invalid token: ${err}`);
       localStorage.removeItem('token');
-      navigate('/')
+      navigate('/');
       return;
     }
-  
+
     axios
       .get(`${baseURL}/api/auth/${decoded.id}`, {
         headers: {
@@ -51,11 +51,11 @@ function Dashboard() {
         },
         withCredentials: true,
       })
-      .then(res => setUser(res.data))
-      .catch(err => {
+      .then((res) => setUser(res.data))
+      .catch((err) => {
         console.error('Failed to fetch user:', err);
         localStorage.removeItem('token');
-        navigate('/')
+        navigate('/');
       });
   }, [refresh, navigate]);
 
@@ -69,17 +69,17 @@ function Dashboard() {
     } finally {
       localStorage.removeItem('token');
       setUser(null);
-      navigate('/login')
+      navigate('/login');
     }
   };
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-  }
+  };
 
   const handleUpload = async () => {
-    if(!file){
+    if (!file) {
       notifications.show({
         title: 'Error!',
         message: 'Please select a file to upload.',
@@ -123,53 +123,50 @@ function Dashboard() {
         message: 'File Upload Failed',
         color: 'red',
       });
-    }
-    finally {
+    } finally {
       setUploading(false);
-      setFile(null); 
-      setRefresh(prev => !prev);
+      setFile(null);
+      setRefresh((prev) => !prev);
     }
   };
 
   if (!user) return <div></div>;
 
-
   return (
-    <div className='dashboard-container'>
+    <div className="dashboard-container">
       <div className="gradient-blob-1"></div>
       <div className="gradient-blob-2"></div>
       <div className="gradient-blob-3"></div>
-      <div className='welcome-container'>
+      <div className="welcome-container">
         <h2 className="heading-title">Welcome, {user.displayName}</h2>
-        <button onClick={handleLogout} className='logout-button' >
-          <i className="fas fa-sign-out"></i>&nbsp;
-          Logout
+        <button onClick={handleLogout} className="logout-button">
+          <i className="fas fa-sign-out"></i>&nbsp; Logout
         </button>
-      </div>    
+      </div>
       <div>
-        <div className='dash-upload'>
-            <h2 className="heading-title">Uploaded Files</h2>
-            <UploadedFilesList uploadedFiles={user.uploadedFiles} />
-            <div className='upload-container'>
-                <label htmlFor="customFileInput" className="logout-button">
-                  {file ? file.name : 'Click to Add File'}
-                </label>
-                <input
-                  type="file"
-                  id="customFileInput"
-                  accept="application/pdf"
-                  onChange={handleFileChange}
-                  style={{ display: 'none' }}
-                />
-                <button 
-                onClick={handleUpload} 
-                color="blue"
-                loading={uploading}
-                className="logout-button"
-                >
-                Upload
-                </button>
-            </div>  
+        <div className="dash-upload">
+          <h2 className="heading-title">Uploaded Files</h2>
+          <UploadedFilesList uploadedFiles={user.uploadedFiles} />
+          <div className="upload-container">
+            <label htmlFor="customFileInput" className="logout-button">
+              {file ? file.name : 'Click to Add File'}
+            </label>
+            <input
+              type="file"
+              id="customFileInput"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            <button
+              onClick={handleUpload}
+              color="blue"
+              loading={uploading}
+              className="logout-button"
+            >
+              Upload
+            </button>
+          </div>
         </div>
         {/* <div className="dash-summary">
             <h2>Summary Files</h2>
@@ -177,7 +174,7 @@ function Dashboard() {
         </div> */}
       </div>
       <h2 className="heading-title">My Professors</h2>
-      <UserProfTable userId={user._id}/>
+      <UserProfTable userId={user._id} />
     </div>
   );
 }

@@ -17,9 +17,9 @@ export default function SummaryOverlay({ fileName, onClose }) {
             const res = await axios.post(`${baseURL}/api/auth/summary-status`, {
               fileName,
             });
-    
+
             const data = res.data;
-    
+
             // ✅ Now the response is clean and directly usable
             if (data.status === 'completed') {
               clearInterval(interval);
@@ -30,13 +30,13 @@ export default function SummaryOverlay({ fileName, onClose }) {
             console.error('Polling error:', err);
           }
         }, 10000);
-    
+
         const timeout = setTimeout(() => {
           clearInterval(interval);
           resolve('❌ Summary generation timed out.');
         }, 180000);
       });
-    };    
+    };
 
     waitForSummary(fileName).then((result) => {
       setSummary(result);
@@ -48,7 +48,7 @@ export default function SummaryOverlay({ fileName, onClose }) {
     <div className="summary-overlay">
       <div className="summary-content">
         <button className="summary-close-button" onClick={onClose}>
-        <i class="fas fa-window-close"></i>
+          <i class="fas fa-window-close"></i>
         </button>
         <h2>
           Summary for <span>{fileName}</span>
