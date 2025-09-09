@@ -69,15 +69,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="contributors-container">
-        <p className="contributors-p">Contributors</p>
-        <div className="contributors-div">
-          <h3 className="contributors-h3">Rithvik Ravilla</h3>
-          <h3 className="contributors-h3">Gaurav Narayanan</h3>
-          <h3 className="contributors-h3">Kunal Hinduja</h3>
-          <h3 className="contributors-h3">Nishith Eedula</h3>
-        </div>
-      </div>
     </div>
   );
 }
