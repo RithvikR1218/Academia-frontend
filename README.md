@@ -1,6 +1,6 @@
 # Academia Frontend
 
-Academia is a platform designed to streamline the process of discovering and connecting with professors worldwide for research opportunities. The frontend offers an intuitive and responsive user interface that enables users to filter, save, and contact professors based on their research interests.
+Academia is a platform designed to streamline the process of discovering and connecting with professors for research opportunities. The frontend offers an intuitive and responsive user interface that enables users to filter, save, and contact professors based on their research interests.
 
 ## 📂 Project Structure
 
