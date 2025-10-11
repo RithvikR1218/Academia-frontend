@@ -109,3 +109,18 @@ export async function insertBatchEntry(data) {
   });
   return res.data;
 }
+
+export async function reorderUserProfEntries(orderedIds) {
+  const token = localStorage.getItem('token');
+  const res = await axios.put(
+    `${baseURL}/api/user-Prof/reorder`,
+    { orderedIds }, // The data payload
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+}

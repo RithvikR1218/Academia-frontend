@@ -174,3 +174,19 @@
     white-space: nowrap;
   }
 }
+
+.drag-handle-cell {
+  width: 40px;
+  text-align: center;
+  cursor: grab;
+  color: #888;
+}
+
+.drag-handle {
+  font-size: 18px;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  color: #ccc;
+}
